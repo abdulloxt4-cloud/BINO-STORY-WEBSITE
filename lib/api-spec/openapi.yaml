@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: bino
+    description: BINO STROY customer interactions
 paths:
   /healthz:
     get:
@@ -24,6 +26,60 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /bino/chat:
+    post:
+      operationId: createBinoChatMessage
+      tags: [bino]
+      summary: Ask the BINO product assistant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BinoChatInput"
+      responses:
+        "200":
+          description: Assistant response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BinoChatReply"
+        "400":
+          description: Invalid chat request
+        "503":
+          description: Assistant is not configured
+  /bino/site-config:
+    get:
+      operationId: getBinoSiteConfig
+      tags: [bino]
+      summary: Get editable BINO STROY contact and counter values
+      responses:
+        "200":
+          description: Public site configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BinoSiteConfig"
+  /bino/leads:
+    post:
+      operationId: createBinoLead
+      tags: [bino]
+      summary: Submit a sales inquiry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BinoLeadInput"
+      responses:
+        "201":
+          description: Inquiry received
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BinoLeadReceipt"
+        "400":
+          description: Invalid inquiry
 components:
   schemas:
     HealthStatus:
@@ -33,4 +89,93 @@ components:
           type: string
       required:
         - status
+    BinoChatTurn:
+      type: object
+      properties:
+        role:
+          type: string
+          enum: [user, assistant]
+        content:
+          type: string
+          maxLength: 2000
+      required: [role, content]
+    BinoChatInput:
+      type: object
+      properties:
+        message:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        language:
+          type: string
+          enum: [uz, ru, en]
+        history:
+          type: array
+          maxItems: 16
+          items:
+            $ref: "#/components/schemas/BinoChatTurn"
+      required: [message, language]
+    BinoChatReply:
+      type: object
+      properties:
+        reply:
+          type: string
+      required: [reply]
+    BinoLeadInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 120
+        phone:
+          type: string
+          minLength: 7
+          maxLength: 40
+        message:
+          type: string
+          minLength: 3
+          maxLength: 2000
+      required: [name, phone, message]
+    BinoLeadReceipt:
+      type: object
+      properties:
+        id:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, createdAt]
+    BinoPhone:
+      type: object
+      properties:
+        label:
+          type: string
+        number:
+          type: string
+      required: [label, number]
+    BinoSiteConfig:
+      type: object
+      properties:
+        phones:
+          type: array
+          items:
+            $ref: "#/components/schemas/BinoPhone"
+        metrics:
+          type: object
+          properties:
+            experienceYears:
+              type: integer
+            completedProjects:
+              type: integer
+            satisfiedClients:
+              type: integer
+            warrantyYears:
+              type: integer
+          required:
+            - experienceYears
+            - completedProjects
+            - satisfiedClients
+            - warrantyYears
+      required: [phones, metrics]
 
