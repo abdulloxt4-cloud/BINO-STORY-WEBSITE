@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "BINO STROY"
+description = "A cinematic trilingual website for Uzbekistan construction company BINO STROY, presenting two decades of construction experience, branded waterproofing materials, applications, services, and contact options."
+version = "1.0.0"
+id = "artifacts/bino-stroy"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21426
+
+[services.development]
+run = "pnpm --filter @workspace/bino-stroy run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/bino-stroy", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/bino-stroy/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21426"
+BASE_PATH = "/"
