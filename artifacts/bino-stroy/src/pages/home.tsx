@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
 import type { FormEvent, MutableRefObject, ReactNode } from 'react';
-
 import { useTranslation } from 'react-i18next';
-
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -13,11 +10,8 @@ import {
   Send,
   X,
 } from 'lucide-react';
-
 import { gsap } from 'gsap';
-
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 import Lenis from 'lenis';
 
 import {
@@ -34,7 +28,6 @@ import type {
 } from '@workspace/api-client-react';
 
 import { BinoModel } from '@/components/bino-model';
-
 import { assistantProductContext } from '@/i18n/config';
 
 type Lang = 'uz' | 'ru' | 'en';
@@ -92,7 +85,6 @@ function useIsMobile() {
 
   useEffect(() => {
     const media = window.matchMedia('(max-width: 767px)');
-
     const change = () => setMobile(media.matches);
 
     media.addEventListener('change', change);
@@ -106,7 +98,6 @@ function useIsMobile() {
 function useScrollScene(
   progress: MutableRefObject<number>,
   onStep?: (step: number) => void,
-  onProgress?: (progress: number) => void,
 ) {
   const ref = useRef<HTMLElement>(null);
 
@@ -115,30 +106,28 @@ function useScrollScene(
 
     if (!element) return;
 
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mobile = window.matchMedia('(max-width: 767px)').matches;
+
     const reducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
 
-    const mobile = window.matchMedia('(max-width: 767px)').matches;
-
-    if (mobile) {
-      progress.current = 0.55;
-      onProgress?.(0.55);
+    if (reducedMotion) {
+      progress.current = 0.5;
       onStep?.(2);
       return;
     }
 
-    if (reducedMotion) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
     const trigger = ScrollTrigger.create({
       trigger: element,
-      start: 'top top',
-      end: '+=950',
-      pin: true,
-      scrub: 1,
+      start: mobile ? 'top 85%' : 'top top',
+      end: mobile ? 'bottom 15%' : '+=950',
+      pin: mobile ? false : true,
+      scrub: mobile ? true : 1,
       invalidateOnRefresh: true,
+
       onUpdate: (self) => {
         progress.current = self.progress;
 
@@ -151,7 +140,7 @@ function useScrollScene(
     return () => {
       trigger.kill();
     };
-  }, [onProgress, onStep, progress]);
+  }, [onStep, progress]);
 
   return ref;
 }
@@ -226,12 +215,14 @@ function useHorizontalApplications() {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
+
         end: () =>
           `+=${Math.max(
             track.scrollWidth -
               (viewport?.clientWidth ?? section.clientWidth),
             700,
           )}`,
+
         pin: true,
         scrub: 1,
         invalidateOnRefresh: true,
@@ -265,12 +256,16 @@ function Header({
 
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false);
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+      }
     };
 
     window.addEventListener('keydown', key);
 
-    return () => window.removeEventListener('keydown', key);
+    return () => {
+      window.removeEventListener('keydown', key);
+    };
   }, []);
 
   return (
@@ -298,9 +293,7 @@ function Header({
               <button
                 key={lang}
                 type="button"
-                className={
-                  i18n.language === lang ? 'active' : ''
-                }
+                className={i18n.language === lang ? 'active' : ''}
                 onClick={() => onLanguage(lang)}
                 aria-pressed={i18n.language === lang}
                 data-testid={`button-language-${lang}`}
@@ -313,9 +306,7 @@ function Header({
           <button
             type="button"
             className="index-trigger"
-            onClick={() =>
-              setMenuOpen((open) => !open)
-            }
+            onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
             aria-controls="site-index"
             data-testid="button-index"
@@ -358,131 +349,6 @@ function Header({
   );
 }
 
-function MobileRoll({
-  activeLayer,
-}: {
-  activeLayer: number;
-}) {
-  const lift = (activeLayer - 2) * -2;
-
-  return (
-    <div
-      className="mobile-diagram"
-      aria-hidden="true"
-    >
-      <div
-        className="mobile-roll"
-        style={{
-          transform: `rotate(-16deg) skewY(-4deg) translateY(${lift}px)`,
-        }}
-      />
-
-      <div
-        className="mobile-layers"
-        style={{
-          transform: `rotate(-14deg) translateY(${lift * 1.5}px)`,
-        }}
-      >
-        <i />
-        <i />
-        <i />
-        <i />
-        <i />
-      </div>
-    </div>
-  );
-}
-
-function FoundationDiagram({
-  layers,
-  binoLabel,
-  progress,
-}: {
-  layers: string[];
-  binoLabel: string;
-  progress: number;
-}) {
-  const colors = [
-    '#665f52',
-    '#9a907e',
-    '#777267',
-    '#d9a441',
-    '#777064',
-    '#514e45',
-    '#625c4e',
-  ];
-
-  return (
-    <div
-      className="mobile-diagram"
-      aria-label={layers.join(', ')}
-    >
-      <div
-        style={{
-          width: 220,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 5,
-          transform:
-            'perspective(400px) rotateX(20deg)',
-        }}
-      >
-        {layers.map((layer, index) => {
-          const bino = layer
-            .toUpperCase()
-            .includes('BINO');
-
-          const separation =
-            (index -
-              (layers.length - 1) / 2) *
-            progress *
-            16;
-
-          return (
-            <div
-              key={layer}
-              style={{
-                height: bino ? 17 : 24,
-                transform: `translateY(${separation}px)`,
-                background: bino
-                  ? '#d9a441'
-                  : colors[index],
-                color: bino
-                  ? '#201b12'
-                  : '#ddd5c7',
-                fontSize: 8,
-                display: 'flex',
-                alignItems: 'center',
-                paddingLeft: 10,
-                fontFamily:
-                  'var(--app-font-mono)',
-                textTransform: 'uppercase',
-                transition:
-                  'transform .12s linear',
-              }}
-            >
-              {layer}
-            </div>
-          );
-        })}
-      </div>
-
-      <span
-        className="mono"
-        style={{
-          position: 'absolute',
-          top: 26,
-          right: 4,
-          color: '#d9a441',
-          fontSize: 8,
-        }}
-      >
-        {binoLabel}
-      </span>
-    </div>
-  );
-}
-
 function TechnicalSection({
   kind,
   sectionKey,
@@ -496,7 +362,6 @@ function TechnicalSection({
   children,
   onStep,
   layerLabel,
-  activeLayer,
 }: {
   kind: 'roll' | 'foundation' | 'roof';
   sectionKey: string;
@@ -510,25 +375,14 @@ function TechnicalSection({
   children?: ReactNode;
   onStep?: (step: number) => void;
   layerLabel?: string;
-  activeLayer?: number;
 }) {
   const { t } = useTranslation();
 
   const mobile = useIsMobile();
 
-  const [diagramProgress, setDiagramProgress] =
-    useState(0);
-
-  const onProgress = useCallback(
-    (value: number) =>
-      setDiagramProgress(value),
-    [],
-  );
-
   const ref = useScrollScene(
     progressRef,
     onStep,
-    onProgress,
   );
 
   return (
@@ -553,68 +407,52 @@ function TechnicalSection({
         <p>{copy}</p>
       </div>
 
-      {kind === 'roll' ? (
-        <MobileRoll
-          activeLayer={activeLayer ?? 0}
+      <div
+        className={`model-wrap ${
+          mobile ? 'mobile-model-wrap' : ''
+        }`}
+        role="img"
+        aria-label={
+          kind === 'roll'
+            ? t('product.tag')
+            : title
+        }
+      >
+        <BinoModel
+          kind={kind}
+          progress={progressRef}
         />
-      ) : (
-        <FoundationDiagram
-          layers={layers}
-          binoLabel={callout}
-          progress={
-            mobile ? diagramProgress : 0
-          }
-        />
-      )}
 
-      {!mobile && (
-        <div
-          className="model-wrap"
-          role="img"
-          aria-label={
-            kind === 'roll'
-              ? t('product.tag')
-              : title
-          }
-        >
-          <BinoModel
-            kind={kind}
-            progress={progressRef}
-          />
-
-          <span className="model-label">
-            {kind === 'roll'
-              ? layerLabel
-              : callout}
-          </span>
-        </div>
-      )}
+        <span className="model-label">
+          {kind === 'roll'
+            ? layerLabel
+            : callout}
+        </span>
+      </div>
 
       {kind !== 'roll' && (
         <div
           className="system-layer-list"
           aria-label={title}
         >
-          {layers.map(
-            (layer, layerIndex) => (
-              <span
-                key={layer}
-                className={
-                  kind === 'foundation'
-                    ? layerIndex === 3
-                      ? 'bino-layer'
-                      : ''
-                    : layerIndex === 2 ||
-                        layerIndex === 3
-                      ? 'bino-layer'
-                      : ''
-                }
-              >
-                <i />
-                {layer}
-              </span>
-            ),
-          )}
+          {layers.map((layer, layerIndex) => (
+            <span
+              key={layer}
+              className={
+                kind === 'foundation'
+                  ? layerIndex === 3
+                    ? 'bino-layer'
+                    : ''
+                  : layerIndex === 2 ||
+                      layerIndex === 3
+                    ? 'bino-layer'
+                    : ''
+              }
+            >
+              <i />
+              {layer}
+            </span>
+          ))}
         </div>
       )}
 
@@ -623,9 +461,7 @@ function TechnicalSection({
       <span className="scene-caption">
         {kind === 'roll'
           ? t('product.tag')
-          : `${index} / ${t(
-              'labels.system',
-            )}`}
+          : `${index} / ${t('labels.system')}`}
       </span>
     </section>
   );
@@ -742,20 +578,12 @@ function LeadForm() {
       noValidate
       data-testid="form-lead"
     >
-      {(
-        [
-          'name',
-          'phone',
-          'message',
-        ] as const
-      ).map((key) => (
+      {(['name', 'phone', 'message'] as const).map((key) => (
         <div
           className="field"
           key={key}
         >
-          <label
-            htmlFor={`lead-${key}`}
-          >
+          <label htmlFor={`lead-${key}`}>
             {t(`contact.${key}`)}
           </label>
 
@@ -838,9 +666,7 @@ function LeadForm() {
       <button
         className="btn"
         type="submit"
-        disabled={
-          createLead.isPending
-        }
+        disabled={createLead.isPending}
         data-testid="button-submit-lead"
       >
         {createLead.isPending
@@ -1039,11 +865,13 @@ function AssistantChat() {
     const chatData: BinoChatInput =
       {
         message: text,
+
         language:
           detectChatLanguage(
             text,
             lang,
           ),
+
         history,
       };
 
@@ -1056,11 +884,13 @@ function AssistantChat() {
           setMessages(
             (current) => [
               ...current,
+
               {
                 role: 'assistant',
                 content:
                   reply.reply,
               },
+
               {
                 role: 'assistant',
                 content: t(
@@ -1074,6 +904,7 @@ function AssistantChat() {
           setMessages(
             (current) => [
               ...current,
+
               {
                 role: 'assistant',
                 content: t(
@@ -1173,8 +1004,7 @@ function AssistantChat() {
               value={input}
               onChange={(event) =>
                 setInput(
-                  event.target
-                    .value,
+                  event.target.value,
                 )
               }
               placeholder={t(
@@ -1347,6 +1177,8 @@ function Home() {
   }, [i18n.language, t]);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const targets = sections
       .map((id) =>
         document.getElementById(
@@ -1410,10 +1242,13 @@ function Home() {
   const metrics = [
     metricValues?.experienceYears ??
       0,
+
     metricValues?.completedProjects ??
       0,
+
     metricValues?.satisfiedClients ??
       0,
+
     metricValues?.warrantyYears ??
       0,
   ];
@@ -1542,7 +1377,6 @@ function Home() {
           (step) => step.title,
         )}
         onStep={stepCallback}
-        activeLayer={activeLayer}
         layerLabel={`${t(
           'labels.layer',
         )} / 0${
@@ -1840,9 +1674,7 @@ function Home() {
           </h3>
 
           <div className="services-list">
-            {[
-              0, 1, 2, 3, 4,
-            ].map((service) => (
+            {[0, 1, 2, 3, 4].map((service) => (
               <span
                 className="service-pill"
                 key={service}
@@ -1930,8 +1762,7 @@ function Home() {
               )}
 
               {config?.phones &&
-                config.phones
-                  .length === 0 && (
+                config.phones.length === 0 && (
                   <span
                     className="phone-skeleton"
                     role="status"

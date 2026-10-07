@@ -1810,3 +1810,37 @@ p {
     transition-duration: 0.01ms !important;
   }
 }
+@media (max-width: 767px) {
+  .mobile-model-wrap {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 320px;
+    right: auto;
+    top: auto;
+    margin: 8px 0 14px;
+    overflow: visible;
+  }
+
+  #product .mobile-model-wrap {
+    height: 340px;
+  }
+
+  #foundation .mobile-model-wrap,
+  #roof .mobile-model-wrap {
+    height: 300px;
+  }
+
+  .mobile-model-wrap .model-canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  .mobile-model-wrap .model-label {
+    display: none;
+  }
+
+  .technical-scene {
+    overflow: hidden;
+  }
+}
