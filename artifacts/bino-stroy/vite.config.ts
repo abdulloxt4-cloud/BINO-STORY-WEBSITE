@@ -65,6 +65,8 @@ export default defineConfig({
     emptyOutDir: true,
   },
   server: {
+    // BINO API PROXY V1 — local dev only; backend must run on port 3001.
+    proxy: { '/api': { target: 'https://bino-story-website.onrender.com', changeOrigin: true } },
     port,
     strictPort: true,
     host: '0.0.0.0',

@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "title": "SP OOO BINO — 值得信赖的建筑与防水解决方案",
+    "description": "20年建筑行业经验，提供BINO防水卷材与建筑防水解决方案。"
+  },
+  "nav": {
+    "index": "栏目",
+    "hero": "首页",
+    "product": "BINO防水材料",
+    "foundation": "地基防水",
+    "roof": "屋顶与露台",
+    "uses": "应用领域",
+    "why": "为何选择BINO",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "eyebrow": "建筑与防水 / 乌兹别克斯坦",
+    "title": "以信任筑基，以品质守护每一卷材料。",
+    "copy": "20年建筑经验，结合自主品牌BINO防水卷材，为项目提供可靠防护。",
+    "explore": "了解产品",
+    "contact": "联系我们",
+    "chip1": "20年行业经验",
+    "chip2": "自有BINO品牌产品",
+    "scroll": "向下探索"
+  },
+  "product": {
+    "eyebrow": "产品 / 001 / BINO防水卷材",
+    "title": "每一层都至关重要。",
+    "copy": "了解BINO卷材的结构：从外部防护到铺设施工，各层各司其职。",
+    "tag": "BINO结构剖面",
+    "step": "层数",
+    "steps": [
+      {
+        "title": "表面保护层",
+        "description": "抵御阳光与天气影响。"
+      },
+      {
+        "title": "上层沥青聚合物防水层",
+        "description": "形成致密的防水屏障。"
+      },
+      {
+        "title": "增强胎基层",
+        "description": "提高抗拉伸与抗撕裂能力。"
+      },
+      {
+        "title": "下层沥青聚合物层",
+        "description": "为可靠粘结提供基础。"
+      },
+      {
+        "title": "底部隔离膜",
+        "description": "便于卷材铺设施工。"
+      }
+    ]
+  },
+  "foundation": {
+    "eyebrow": "建筑系统 / 002 / 地基",
+    "title": "可靠的地基防水，守护建筑长久使用。",
+    "copy": "从土壤到保护墙，每一个结构层都发挥防水作用。",
+    "callout": "BINO防水层的位置",
+    "layers": [
+      "土壤",
+      "碎石垫层",
+      "混凝土地基",
+      "BINO防水层",
+      "保护墙",
+      "回填土"
+    ]
+  },
+  "roof": {
+    "eyebrow": "建筑系统 / 003 / 屋顶与露台",
+    "title": "从基层做起，构建可靠防水保护。",
+    "copy": "面向平屋顶和露台的多层系统，各层相互配合。",
+    "callout": "BINO防水层",
+    "layers": [
+      "混凝土板",
+      "基层底涂",
+      "BINO第一层",
+      "BINO第二层",
+      "保温层",
+      "找平层",
+      "面层保护层"
+    ]
+  },
+  "uses": {
+    "eyebrow": "应用领域 / 004",
+    "title": "为容易接触水的空间提供保护。",
+    "copy": "BINO防水材料适用于建筑内外多个场景，帮助减少水分侵入。",
+    "cards": [
+      {
+        "title": "浴室与厨房",
+        "description": "在饰面施工前，为潮湿区域的地面和墙面做好防水准备。",
+        "place": "地面 / 潮湿区域"
+      },
+      {
+        "title": "地下室与停车场",
+        "description": "为地下建筑结构提供多层防水保护。",
+        "place": "地基 / 墙面"
+      },
+      {
+        "title": "泳池与储水池",
+        "description": "为长期接触水的设施提供防水解决方案。",
+        "place": "内部表面 / 池底"
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "SP OOO BINO / 经验与理念",
+    "title": "让信任体现在工作的每一步。",
+    "metrics": [
+      "行业经验（年）",
+      "已完成项目",
+      "满意客户",
+      "质保年限"
+    ],
+    "timelineTitle": "我们的合作流程",
+    "timeline": [
+      "提交咨询",
+      "现场测量与报价",
+      "材料配送与施工",
+      "验收与质保说明"
+    ],
+    "servicesTitle": "服务领域",
+    "services": [
+      "住宅建设",
+      "装修工程",
+      "商业建筑",
+      "设计与规划",
+      "防水工程"
+    ],
+    "emptyMetric": "—"
+  },
+  "contact": {
+    "eyebrow": "SP OOO BINO / 联系我们",
+    "title": "提交您的需求。",
+    "copy": "告诉我们您的项目情况，我们的团队将与您联系。",
+    "name": "您的姓名",
+    "phone": "联系电话",
+    "message": "项目简述",
+    "namePlaceholder": "姓名",
+    "phonePlaceholder": "+998 90 000 00 00",
+    "messagePlaceholder": "您计划开展什么工程？",
+    "submit": "发送咨询",
+    "sending": "正在发送…",
+    "success": "咨询已提交，我们将尽快与您联系。",
+    "error": "发送失败，请重试。",
+    "validation": {
+      "name": "姓名至少需要2个字符。",
+      "phone": "请检查电话号码。",
+      "message": "留言至少需要3个字符。"
+    },
+    "telegram": "通过Telegram联系",
+    "map": "查看地图位置",
+    "mapNote": "详细地址暂未提供。",
+    "phoneLoad": "正在加载电话号码…",
+    "phoneError": "无法加载电话号码。",
+    "phoneEmpty": "暂时没有电话号码。",
+    "retry": "重试",
+    "copyright": "© SP OOO BINO。保留所有权利。"
+  },
+  "labels": {
+    "application": "BINO应用场景",
+    "system": "BINO防水系统",
+    "home": "首页",
+    "preload": "正在加载SP OOO BINO",
+    "language": "选择语言",
+    "layer": "层数"
+  },
+  "chat": {
+    "title": "BINO产品助手",
+    "status": "随时为您解答",
+    "welcome": "您好！欢迎咨询BINO防水材料、结构层、应用场景或施工方法。",
+    "placeholder": "请输入您的问题…",
+    "send": "发送",
+    "close": "关闭聊天",
+    "loading": "正在准备回复…",
+    "error": "消息发送失败，请重试。",
+    "nameAsk": "请留下姓名和电话，方便我们的团队与您联系。",
+    "open": "打开BINO助手"
+  },
+  "loading": "正在加载SP OOO BINO"
+}

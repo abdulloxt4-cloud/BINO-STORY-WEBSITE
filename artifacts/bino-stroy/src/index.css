@@ -1844,3 +1844,728 @@ p {
     overflow: hidden;
   }
 }
+/* =========================================
+   SP OOO BINO — BRIGHTER PREMIUM THEME
+   ========================================= */
+
+html,
+body {
+  background: #1b1916;
+}
+
+body {
+  color: #f1eadf;
+}
+
+.site-header {
+  background: linear-gradient(
+    180deg,
+    rgba(27, 25, 22, 0.92),
+    rgba(27, 25, 22, 0.35),
+    transparent
+  );
+}
+
+.hero::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(16, 15, 13, 0.62) 0%,
+      rgba(16, 15, 13, 0.30) 48%,
+      rgba(16, 15, 13, 0.05) 100%
+    ),
+    linear-gradient(
+      0deg,
+      #1b1916 0%,
+      transparent 52%
+    );
+}
+
+.technical-scene {
+  background:
+    radial-gradient(
+      ellipse at 68% 48%,
+      #403728 0%,
+      #2d2922 36%,
+      #1b1916 76%
+    );
+}
+
+.applications {
+  background: #23201b;
+}
+
+.use-card {
+  background: #28241e;
+}
+
+.use-card:hover {
+  background: #302b23;
+}
+
+.why {
+  background: #1b1916;
+}
+
+.contact {
+  background: #29251f;
+}
+
+.chat-panel {
+  background: #28241e;
+}
+
+.map-placeholder {
+  background:
+    linear-gradient(
+      130deg,
+      #332e26,
+      #24211c
+    );
+}
+
+.section-head p,
+.scene-aside p,
+.hero-copy,
+.applications-heading p,
+.use-card p,
+.contact-title p,
+.metric span {
+  color: #c9c1b5;
+}
+
+.brand,
+.section-head h2,
+.scene-aside h3,
+.applications-heading h2,
+.why-title h2,
+.contact-title h2,
+.use-card h3 {
+  color: #f4eee5;
+}
+
+.eyebrow,
+.scene-number,
+.layer-kicker,
+.use-card .mono,
+.metric strong,
+.telegram-link {
+  color: #e5ae45;
+}
+
+.field input,
+.field textarea {
+  background: rgba(32, 29, 24, 0.78);
+  border-color: #655b4b;
+}
+
+@media (max-width: 767px) {
+  .site-header {
+    background: rgba(27, 25, 22, 0.94);
+  }
+
+  .hero::before {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(16, 15, 13, 0.60),
+        rgba(16, 15, 13, 0.16)
+      ),
+      linear-gradient(
+        0deg,
+        #1b1916 0%,
+        rgba(27, 25, 22, 0.12) 70%
+      );
+  }
+
+.technical-scene {
+  background:
+    radial-gradient(
+      ellipse at 68% 48%,
+      #4a4030 0%,
+      #332e26 38%,
+      #1d1b18 78%
+    );
+}
+}
+
+/* SP OOO BINO LIGHT COLORS START */
+/* Only colors, borders, surface fills and existing overlay tints. No layout/animation changes. */
+:root {
+  --background: 210 45% 97%;
+  --foreground: 214 57% 19%;
+  --border: 212 28% 84%;
+  --input: 212 28% 84%;
+  --card: 0 0% 100%;
+  --card-foreground: 214 57% 19%;
+  --primary: 40 53% 54%;
+  --primary-foreground: 214 57% 15%;
+  --secondary: 211 42% 94%;
+  --secondary-foreground: 214 57% 19%;
+  --muted: 211 42% 94%;
+  --muted-foreground: 209 21% 46%;
+  --accent: 40 53% 54%;
+  --accent-foreground: 214 57% 15%;
+  --ring: 40 53% 54%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 214 57% 19%;
+  --bino-bg: #f4f8fc;
+  --bino-paper: #ffffff;
+  --bino-alt: #eaf2f9;
+  --bino-ink: #142d4e;
+  --bino-muted: #637c96;
+  --bino-line: #d4e1ed;
+  --bino-gold: #c69b4b;
+}
+html, body { background: var(--bino-bg) !important; color: var(--bino-ink) !important; }
+::selection { background: #e8c785; color: #142d4e; }
+.site-header { background: rgba(248, 251, 254, .96) !important; border-bottom: 1px solid rgba(177, 199, 221, .48) !important; }
+.site-header .brand, .index-trigger, .menu-panel a { color: var(--bino-ink) !important; }
+.lang-switch button { color: #637c96 !important; }
+.lang-switch button.active, .scroll-index b { color: #ad812f !important; }
+.menu-panel { background: #fff !important; border: 1px solid var(--bino-line) !important; }
+.menu-panel a { border-color: var(--bino-line) !important; }
+.menu-panel a:hover { background: #eaf2f9 !important; }
+.scroll-index { color: #6d8198 !important; }
+.eyebrow, .scene-number, .layer-kicker, .model-label,
+.hero-foot b, .use-card .mono, .services h3, .timeline-item > span,
+#uses .use-card .mono { color: #ad812f !important; }
+.eyebrow::before, .model-label::before { background: var(--bino-gold) !important; }
+/* Keep the approved hero image. Lighten only the surface and overlay. */
+#home.hero { background-color: #eaf2f9 !important; color: var(--bino-ink) !important; }
+#home.hero::before {
+  background: linear-gradient(90deg, rgba(248,251,254,.99) 0%, rgba(248,251,254,.96) 36%, rgba(248,251,254,.68) 63%, rgba(248,251,254,.30) 100%),
+              linear-gradient(0deg, #f4f8fc 0%, transparent 38%) !important;
+}
+#home.hero h1 { color: var(--bino-ink) !important; }
+#home.hero .hero-copy, #home.hero .hero-foot { color: #47617d !important; }
+#home.hero .btn-quiet { color: #173859 !important; border-color: #a7bbd0 !important; background: rgba(255,255,255,.76) !important; }
+#home.hero .btn-quiet:hover { background: #e4eef7 !important; }
+/* Leave original 3D canvases and their materials alone. */
+.technical-scene {
+  background: radial-gradient(ellipse at 68% 48%, #e2edf6 0%, #f6f9fd 51%, #edf4fa 100%) !important;
+  color: var(--bino-ink) !important;
+}
+.technical-scene .section-head h2, .technical-scene .scene-aside h3 { color: var(--bino-ink) !important; }
+.technical-scene .section-head p, .technical-scene .scene-aside p,
+.technical-scene .scene-caption, .technical-scene .system-layer-list span { color: #526e88 !important; }
+.technical-scene .system-layer-list i { border-color: #9cb4c7 !important; }
+.technical-scene .system-layer-list .bino-layer, .technical-scene .system-layer-list .bino-layer i { color: #a47726 !important; }
+.technical-scene .scene-controls { background: rgba(255,255,255,.95) !important; border-color: #cedeea !important; box-shadow: 0 12px 30px rgba(30,61,94,.10) !important; }
+.technical-scene .scene-control-button { color: #193b5d !important; background: #e6f0f8 !important; border-color: #c4d8e6 !important; }
+.technical-scene .scene-control-button:hover:not(:disabled) { background: #f0d9a7 !important; }
+.technical-scene .scene-control-counter { color: var(--bino-ink) !important; }
+.technical-scene .scene-control-button:disabled { opacity: .48 !important; }
+/* Applications — existing photo content preserved. */
+#uses.applications { background: #eef4fa !important; color: var(--bino-ink) !important; }
+#uses .applications-heading h2, #uses .use-card h3 { color: var(--bino-ink) !important; }
+#uses .applications-heading p, #uses .use-card p { color: #526e88 !important; }
+#uses .use-cards { background: #d4e1ed !important; border-color: #d4e1ed !important; }
+#uses .use-cards > .use-card { background: #fff !important; border-color: #d4e1ed !important; color: var(--bino-ink) !important; }
+#uses .use-cards > .use-card:hover { background: #f9fcff !important; border-color: #c69b4b !important; }
+#uses .use-card .use-illustration { background: #eaf2f9 !important; border-color: #dbe5ee !important; }
+#uses .use-card .use-place { color: #607b96 !important; border-top-color: #d7e3ee !important; }
+/* Experience, cards and service steps. */
+#why.why { background: #fff !important; color: var(--bino-ink) !important; }
+#why .why-title h2, #why .process h3, #why .timeline-item b,
+#why .why-insights-intro h3, #why .why-insight h4, #why .why-cta h3 { color: var(--bino-ink) !important; }
+#why .metric strong { color: #234a70 !important; }
+#why .metric span, #why .why-insights-intro p, #why .why-insight p,
+#why .why-step-detail, #why .why-cta p { color: #627b94 !important; }
+#why .metrics, #why .metric, #why .timeline, #why .timeline-item, #why .services { border-color: var(--bino-line) !important; }
+#why .service-pill { color: #254867 !important; border-color: #d2e0ec !important; background: #f7fafc !important; }
+#why .why-insight, #why .why-insight:hover {
+  background: linear-gradient(145deg,#fff,#f0f6fb) !important;
+  border-color: #d7e3ec !important;
+}
+#why .why-insight:hover { border-color: var(--bino-gold) !important; }
+#why .why-insight-top span:first-child, #why .why-insights-kicker { color: #af822d !important; }
+#why .why-insight-cross { color: #c69b4b !important; }
+#why .why-insight-watermark { color: rgba(21,65,102,.06) !important; }
+#why .why-cta { background: linear-gradient(112deg,#edf5fb,#f9fcff) !important; border-color: #d1e0ea !important; }
+/* Contact, social buttons, map and form. */
+#contact.contact { background: #eaf2f9 !important; color: var(--bino-ink) !important; }
+#contact::before { background: radial-gradient(ellipse at 88% 30%,rgba(198,155,75,.10),transparent 50%) !important; }
+#contact .contact-title h2, #contact .bino-social-head h3, #contact .bino-location-heading h3 { color: var(--bino-ink) !important; }
+#contact .contact-title p, #contact .bino-social-head p, #contact .bino-location-heading p,
+#contact .bino-map-bottom span { color: #627b94 !important; }
+#contact .bino-contact-phone-number, #contact .bino-more-phones a, #contact .phones a { color: #173b60 !important; }
+#contact .field label, #contact .bino-contact-eyebrow { color: #82652e !important; }
+#contact .field input, #contact .field textarea {
+  background: #fff !important;
+  color: var(--bino-ink) !important;
+  border-color: #bbcede !important;
+}
+#contact .field input::placeholder, #contact .field textarea::placeholder, .chat-composer input::placeholder { color: #8399ac !important; }
+#contact .field input:focus, #contact .field textarea:focus { border-color: #c69b4b !important; }
+#contact .bino-social-link, #contact .bino-social-link:hover {
+  background: #fff !important;
+  border-color: #d1deea !important;
+  color: #173b60 !important;
+}
+#contact .bino-social-link:hover { border-color: #c69b4b !important; }
+#contact .bino-social-link span { color: #173b60 !important; }
+#contact .bino-social-link svg { color: #b68b3e !important; }
+#contact .bino-location { background: #fff !important; border-color: #d1e0ea !important; }
+#contact .bino-map-frame, #contact .map-placeholder { background: #eef4fa !important; border-color: #cbdce8 !important; color: #456783 !important; }
+#contact .bino-map-frame iframe { filter: none !important; }
+#contact .footer { border-color: #ccdae7 !important; color: #627b94 !important; }
+/* Shared accents — do not change sizes, layout or click behavior. */
+.btn, .chat-launch, .chat-composer button, #why .why-cta-button,
+#contact .bino-map-button { background: #c69b4b !important; border-color: #c69b4b !important; color: #142d4e !important; }
+.btn:hover, #contact .bino-map-button:hover, #why .why-cta-button:hover { background: #d7b66c !important; }
+.chat-panel { background: #fff !important; color: #142d4e !important; border-color: #cbdce8 !important; box-shadow: 0 22px 60px rgba(20,45,78,.18) !important; }
+.chat-head, .chat-composer { border-color: #d5e2ed !important; }
+.chat-head span, .chat-notice { color: #627b94 !important; }
+.chat-bubble { background: #eef4fa !important; color: #173b60 !important; }
+.chat-bubble.user { background: #d4e4f1 !important; color: #173b60 !important; }
+.chat-composer input, .icon-button { color: #173b60 !important; }
+.preloader { background: #f4f8fc !important; }
+.preloader-inner { color: #142d4e !important; }
+.preloader-line { background: #d2e1ee !important; }
+@media (max-width:767px) {
+  .site-header { background: rgba(250,252,255,.97) !important; }
+  #home.hero::before {
+    background: linear-gradient(180deg,rgba(248,251,254,.16) 0%,rgba(248,251,254,.64) 26%,
+      rgba(248,251,254,.95) 47%,#f4f8fc 77%,#f4f8fc 100%) !important;
+  }
+}
+/* SP OOO BINO LIGHT COLORS END */
+
+/* BINO FINISH PACK 2026 BEGIN */
+/* SP OOO BINO — calm ice-blue and gold, slightly deeper than the earlier light palette.
+   No edits to 3D meshes, assets, animation timing or scroll logic. */
+:root {
+  --bino-bg: #e2eaf2;
+  --bino-paper: #f3f7fb;
+  --bino-alt: #d7e3ef;
+  --bino-ink: #183452;
+  --bino-muted: #4e6883;
+  --bino-line: #b5c9db;
+  --bino-gold: #be913e;
+  --background: 211 31% 91%;
+  --foreground: 211 55% 21%;
+  --border: 210 27% 77%;
+  --card: 210 48% 97%;
+  --card-foreground: 211 55% 21%;
+  --secondary: 210 34% 86%;
+  --secondary-foreground: 211 55% 21%;
+  --muted: 210 34% 86%;
+  --muted-foreground: 211 26% 41%;
+}
+html, body, main { background: #e2eaf2 !important; color: #183452 !important; }
+::selection { background: #dbc08c; color: #183452; }
+.site-header {
+  background: rgba(229,238,246,.96) !important;
+  border-bottom: 1px solid #bdcede !important;
+  box-shadow: 0 5px 20px rgba(22,55,83,.07) !important;
+  backdrop-filter: blur(10px);
+}
+.site-header .brand, .site-header .brand > span:last-child,
+#contact .footer .brand, #contact .footer .brand > span:last-child,
+.index-trigger, .menu-panel a { color: #193653 !important; opacity: 1 !important; -webkit-text-fill-color: #193653 !important; }
+.site-header .brand-mark, #contact .footer .brand-mark { opacity:1 !important; }
+.lang-switch button { color: #526e89 !important; }
+.lang-switch button.active { color: #a4772d !important; }
+.index-trigger:hover, .bino-top-links a:hover { color: #a4772d !important; }
+.menu-panel { background: #f6f9fc !important; border-color: #bdcedf !important; box-shadow: 0 20px 50px rgba(20,52,82,.17) !important; }
+.menu-panel a { border-color: #c3d2df !important; }
+.menu-panel a:hover { background: #e0eaf4 !important; }
+.scroll-index { color: #58728c !important; }
+.scroll-index b { color: #a4772d !important; }
+
+/* New top-center shortcuts; existing BO'LIMLAR dropdown is preserved. */
+.bino-top-links {
+  display: flex; flex: 1; align-items: center; justify-content: center;
+  gap: clamp(10px,1.6vw,26px); min-width: 0; margin: 0 2vw;
+}
+.bino-top-links a {
+  color: #294866 !important; font-size: 11px; font-weight: 700;
+  white-space: nowrap; text-decoration: none; letter-spacing: .01em;
+  padding: 10px 2px; border-bottom: 2px solid transparent;
+  transition: color .2s ease, border-color .2s ease;
+}
+.bino-top-links a:hover, .bino-top-links a:focus-visible { border-color: #c39749; }
+@media(max-width:1330px) { .bino-top-links { display: none; } }
+
+/* 01 — retain selected photograph and roll, reduce the overly pale white veil. */
+#home.hero { background-color: #d9e5f0 !important; color: #183452 !important; }
+#home.hero::before {
+  background: linear-gradient(90deg,rgba(227,237,246,.98) 0%,rgba(227,237,246,.90) 32%,rgba(225,235,245,.56) 57%,rgba(222,235,245,.16) 82%),
+              linear-gradient(0deg,#dce7f1 0%,transparent 35%) !important;
+}
+#home.hero h1 { color: #183452 !important; }
+#home.hero .hero-copy, #home.hero .hero-foot { color: #415e7d !important; }
+#home.hero .btn-quiet { background: rgba(241,247,252,.91) !important; color: #1c4264 !important; border-color: #9cb7cf !important; }
+#home.hero .btn-quiet:hover { background: #d6e6f3 !important; }
+
+/* 02 / 03 / 04 — distinct ice-blue canvas surroundings, 3D textures unchanged. */
+#product.technical-scene, #foundation.technical-scene, #roof.technical-scene {
+  background: radial-gradient(ellipse at 68% 46%,#d3e1ee 0%,#e5eef6 53%,#dbe6f0 100%) !important;
+  color: #183452 !important;
+}
+.technical-scene .section-head h2, .technical-scene .scene-aside h3 { color: #183452 !important; }
+.technical-scene .section-head p, .technical-scene .scene-aside p,
+.technical-scene .scene-caption, .technical-scene .system-layer-list span { color: #496681 !important; text-shadow: none !important; }
+.technical-scene .system-layer-list i { background: #809fb9 !important; }
+.technical-scene .scene-controls { background: rgba(234,243,249,.97) !important; border-color: #b2c8da !important; }
+.technical-scene .scene-control-button { background: #d8e7f3 !important; color: #173956 !important; border-color: #adc6db !important; }
+.technical-scene .scene-control-button:hover:not(:disabled) { background: #edcf93 !important; }
+.technical-scene .scene-control-counter { color: #173956 !important; }
+
+/* 05 — original AI render photos stay in place, cards gain gentle contrast. */
+#uses.applications { background: #dce7f1 !important; color: #193653 !important; }
+#uses .applications-heading h2, #uses .use-card h3 { color: #193653 !important; }
+#uses .applications-heading p, #uses .use-card p { color: #4d6781 !important; }
+#uses .use-cards { background: #b5c8d8 !important; border-color: #b5c8d8 !important; }
+#uses .use-cards > .use-card { background: #f0f5fa !important; color: #183452 !important; border-color: #b8cbdc !important; }
+#uses .use-cards > .use-card:hover { background: #f8fafc !important; border-color: #bf9141 !important; }
+#uses .use-card .use-illustration { background: #d5e3ee !important; border-color: #c1d0df !important; }
+#uses .use-card .use-place { color: #506e89 !important; border-color: #c0d1e0 !important; }
+
+/* 06 — picture on right and readable experience, steps, services. */
+#why.why { background: #e6eef6 !important; color: #183452 !important; }
+#why .why-title {
+  display: grid !important; grid-template-columns: minmax(0,1fr) minmax(320px,.86fr);
+  align-items: center; gap: clamp(30px,5vw,90px);
+}
+#why .why-title > div:not(.bino-why-visual) { grid-column:1; grid-row:1; min-width:0; }
+#why .why-title > .bino-why-visual { grid-column:2; grid-row:1; }
+#why .bino-why-visual {
+  position: relative; display:block; min-width:0; overflow:hidden;
+  border: 1px solid #bccddc; border-radius: 16px;
+  aspect-ratio: 1.72; background: #c3d6e5;
+  box-shadow: 0 20px 48px rgba(23,53,84,.15);
+}
+#why .bino-why-visual img { width:100%; height:100%; display:block; object-fit:cover; object-position:center 46%; }
+#why .bino-why-visual::after {
+  content:''; position:absolute; inset:45% 0 0;
+  background: linear-gradient(0deg,rgba(15,37,57,.55),transparent);
+  pointer-events:none;
+}
+#why .bino-why-tag {
+  position:absolute; z-index:2; left:20px; bottom:18px;
+  display:flex; align-items:baseline; gap:10px; color:#fff;
+  text-shadow:0 2px 8px rgba(10,20,30,.45);
+}
+#why .bino-why-tag strong { color: #f1d28c !important; font-size: 30px; font-weight:700; line-height:1; }
+#why .bino-why-tag span { font-size: 12px; font-weight:600; }
+#why .why-title h2, #why .process h3, #why .timeline-item b,
+#why .why-insights-intro h3, #why .why-insight h4, #why .why-cta h3 { color: #183452 !important; }
+#why .metric strong { color:#224566 !important; }
+#why .metric span, #why .why-insights-intro p,
+#why .why-insight p, #why .why-step-detail, #why .why-cta p { color:#4c6a83 !important; }
+#why .metrics, #why .metric, #why .timeline, #why .timeline-item, #why .services { border-color:#b9ccdc !important; }
+#why .service-pill { background:#f1f6fa !important; border-color:#bacdde !important; color:#294d6b !important; }
+#why .why-insight { background:linear-gradient(145deg,#f5f9fc,#e2ebf4) !important; border-color:#b9cbdd !important; }
+#why .why-insight:hover { border-color:#bd903f !important; }
+#why .why-cta { background:linear-gradient(110deg,#d8e5f0,#f0f6fa) !important; border-color:#b5c9db !important; }
+
+/* 07 — socials and Google Maps work as before; a stronger footer wordmark. */
+#contact.contact { background: #dbe7f1 !important; color:#183452 !important; }
+#contact::before { background:radial-gradient(ellipse at 86% 24%,rgba(184,147,75,.10),transparent 46%) !important; }
+#contact .contact-title h2, #contact .bino-social-head h3,
+#contact .bino-location-heading h3 { color:#183452 !important; }
+#contact .contact-title p, #contact .bino-social-head p,
+#contact .bino-location-heading p, #contact .bino-map-bottom span { color:#4d6a84 !important; }
+#contact .bino-contact-phone-number, #contact .bino-more-phones a,
+#contact .phones a { color:#194064 !important; }
+#contact .field input, #contact .field textarea { background:#f4f8fb !important; color:#183452 !important; border-color:#aec5d8 !important; }
+#contact .bino-social-link { background:#f0f6fa !important; color:#183452 !important; border-color:#b9cbdc !important; }
+#contact .bino-social-link:hover { border-color:#c1974d !important; }
+#contact .bino-location { background:#eef4f9 !important; border-color:#b4c8d9 !important; }
+#contact .bino-map-frame, #contact .map-placeholder { background:#c9ddeb !important; border-color:#b5c9db !important; }
+#contact .footer { border-top:1px solid #afc2d3 !important; color:#4e6982 !important; }
+#contact .footer a.brand, #contact .footer a.brand > span:last-child { color:#183452 !important; opacity:1 !important; -webkit-text-fill-color:#183452 !important; }
+#contact .footer .brand-mark { opacity:1 !important; }
+#contact .footer span:not(.brand-mark) { color:#284865 !important; }
+
+/* Shared accents and chatbot. */
+.btn, .chat-launch, .chat-composer button, #why .why-cta-button,
+#contact .bino-map-button { background: #c69b4b !important; border-color:#c69b4b !important; color:#183452 !important; }
+.btn:hover, #why .why-cta-button:hover, #contact .bino-map-button:hover { background:#d9b870 !important; }
+.chat-panel { background:#edf4f9 !important; color:#193653 !important; border-color:#b5cadd !important; }
+.chat-head, .chat-composer { border-color:#b7ccdc !important; }
+.chat-bubble { background:#d8e6f2 !important; color:#193b5c !important; }
+.chat-bubble.user { background:#c4d8e9 !important; color:#193b5c !important; }
+.preloader { background:#e2eaf2 !important; }
+
+@media(max-width:820px) {
+  #why .why-title { grid-template-columns:minmax(0,1fr); gap:24px; }
+  #why .why-title > div:not(.bino-why-visual) { grid-column:1;grid-row:1; }
+  #why .why-title > .bino-why-visual { grid-column:1;grid-row:2; width:100%;max-width:600px; }
+}
+@media(max-width:767px) {
+  .site-header { background:rgba(229,238,246,.98) !important; backdrop-filter:none; }
+  #home.hero::before {
+    background: linear-gradient(180deg,rgba(226,237,246,.10) 0%,rgba(226,237,246,.48) 22%,rgba(226,237,246,.84) 44%,#dae6f1 79%,#dae6f1 100%) !important;
+  }
+  #why .bino-why-visual { border-radius:12px; aspect-ratio:1.6; }
+  #why .bino-why-tag { left:14px;bottom:12px; }
+}
+@media(prefers-reduced-motion:reduce) { .bino-top-links a { transition:none; } }
+/* BINO FINISH PACK 2026 END */
+
+/* BINO CONTRAST AND ZH 2026 START */
+/* Preserve the light blue theme, photos, gold buttons and animations.
+   Stronger small-label contrast and compact four-language switch. */
+:root { --bino-small-label: #193b60; }
+body .eyebrow,
+body .scene-number,
+body .layer-kicker,
+body .model-label,
+body #why .services h3,
+body #why .timeline-item > span,
+body #why .why-insights-kicker,
+body #why .why-insight-top span:first-child,
+body #contact .field label,
+body #contact .bino-contact-eyebrow,
+body #contact .bino-map-bottom a,
+body #contact .bino-social-head .eyebrow,
+body #uses .use-card .use-feature span,
+body #uses .use-card .use-feature-place,
+body #uses .use-card .use-place,
+body #uses .use-card [class*="category"] span,
+body #uses .use-card-body .mono,
+body .services h3 {
+  color: var(--bino-small-label) !important;
+  opacity: 1 !important;
+}
+body #uses .use-card .use-feature svg,
+body #uses .use-card .use-feature i,
+body #uses .use-card [class*="category"] svg {
+  color: #214d75 !important;
+  stroke: #214d75 !important;
+}
+body #uses .use-photo-kicker {
+  color: #fff !important;
+  background: rgba(18,39,60,.79) !important;
+  border-radius: 2px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+body .lang-switch { display: flex; align-items: center; gap: clamp(5px,.75vw,12px); }
+body .lang-switch button { color: #3e607f !important; opacity: 1 !important; }
+body .lang-switch button.active {
+  color: #173b5f !important;
+  font-weight: 800 !important;
+  border-bottom-color: #ad833f !important;
+}
+body .site-header .brand, body #contact .footer .brand,
+body #contact .footer .brand > span:last-child {
+  color: #173553 !important;
+  -webkit-text-fill-color: #173553 !important;
+  opacity: 1 !important;
+}
+@media (max-width: 767px) {
+  body .lang-switch { gap: 5px; }
+  body .lang-switch button { font-size: 10px; }
+}
+/* BINO CONTRAST AND ZH 2026 END */
+
+
+/* BINO LEAD CONFIRM CSS V1 — styles only, no layout updates to other sections */
+#contact .form-state.error,
+#contact .field-error {
+  display: block;
+  color: #962c2a !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.55 !important;
+}
+#contact .form-state.error {
+  background: #fff0ed !important;
+  border: 1px solid #c66a5a !important;
+  border-left: 4px solid #9a2826 !important;
+  border-radius: 7px !important;
+  padding: 14px 17px !important;
+  margin: 2px 0 0 !important;
+}
+#contact .field input[aria-invalid="true"],
+#contact .field textarea[aria-invalid="true"] { border-color: #a83230 !important; }
+.bino-confirm-overlay {
+  position: fixed; inset: 0; z-index: 100000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(10, 28, 49, .62);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+}
+.bino-confirm-dialog {
+  position: relative;
+  width: min(100%, 480px);
+  padding: clamp(30px, 5vw, 50px);
+  border: 1px solid #d2dfeb;
+  border-radius: 18px;
+  background: #f4f8fc;
+  color: #173554;
+  text-align: center;
+  box-shadow: 0 28px 90px rgba(10, 29, 49, .25);
+}
+.bino-confirm-icon {
+  margin: 0 auto 21px;
+  display: flex; align-items: center; justify-content: center;
+  width: 66px; height: 66px; border-radius: 50%;
+  background: #e4f1e8; color: #257044;
+  border: 1px solid #9fc6ab;
+  font-size: 37px; font-weight: 500;
+}
+.bino-confirm-eyebrow {
+  color: #5b7188; letter-spacing: .17em;
+  font-size: 11px; font-weight: 800;
+}
+.bino-confirm-dialog h2 {
+  font-size: clamp(32px, 5vw, 44px);
+  line-height: 1.12; font-weight: 650;
+  color: #173554;
+  margin: 14px 0;
+}
+.bino-confirm-dialog p {
+  color: #496580; font-size: 16px;
+  line-height: 1.65;
+  margin: 0 auto 26px;
+  max-width: 360px;
+}
+.bino-confirm-close {
+  appearance: none; cursor: pointer;
+  display: inline-flex; align-items: center;
+  justify-content: center; gap: 12px;
+  min-height: 48px; width: min(100%, 250px);
+  border: 1px solid #bf9546; border-radius: 6px;
+  background: #c69b4b; color: #173554;
+  font-family: inherit; font-size: 14px; font-weight: 700; line-height: 1.2;
+  padding: 12px 22px;
+}
+.bino-confirm-close:hover { background: #d5b36c; }
+.bino-confirm-close:focus-visible { outline: 3px solid #1e5b82; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .bino-confirm-overlay { backdrop-filter: none; -webkit-backdrop-filter: none; } }
+
+/* BINO PROCESS PHOTO 2026 START */
+/* Picture under "Hamkorlik qanday boshlanadi"; existing right timeline untouched. */
+#why .process .bino-process-intro {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+}
+#why .process .bino-process-intro h3 {
+  margin: 0;
+  color: #183653;
+  max-width: 330px;
+}
+#why .process .bino-process-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.84 / 1;
+  object-fit: cover;
+  object-position: center 46%;
+  border-radius: 13px;
+  border: 1px solid #bbccdf;
+  box-shadow: 0 14px 35px rgba(27, 59, 91, .14);
+  background: #d9e3ed;
+}
+@media (max-width: 767px) {
+  #why .process .bino-process-intro { gap: 14px; }
+  #why .process .bino-process-photo {
+    aspect-ratio: 1.45 / 1;
+    border-radius: 10px;
+  }
+}
+/* BINO PROCESS PHOTO 2026 END */
+
+/* BINO PRELOADER CONTRAST V2 START */
+/* Isolated splash screen: no changes to site sections, 3D or forms. */
+.preloader {
+  background: radial-gradient(ellipse at 64% 34%, #31516d 0%, #1d3956 39%, #10253d 100%) !important;
+  color: #ffffff !important;
+  isolation: isolate;
+}
+.preloader::before {
+  content: '';
+  position: absolute;
+  inset: 25px;
+  border: 1px solid rgba(222, 185, 105, .25);
+  pointer-events: none;
+}
+.preloader-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: min(360px, 90vw);
+  max-width: 92vw;
+  padding: 46px clamp(26px, 5vw, 68px);
+  border: 1px solid rgba(232, 198, 132, .32);
+  border-radius: 14px;
+  background: rgba(8, 26, 47, .30);
+  color: #ffffff !important;
+  box-shadow: 0 24px 70px rgba(4, 17, 33, .32);
+  text-align: center;
+}
+.preloader-inner::before {
+  content: 'SP OOO BINO';
+  display: block;
+  color: #ffffff;
+  font-family: var(--app-font-sans, 'Manrope', sans-serif);
+  font-size: clamp(23px, 4vw, 33px);
+  font-weight: 800;
+  letter-spacing: .09em;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.preloader-inner .brand-mark {
+  width: 62px !important;
+  height: 62px !important;
+  margin: 25px auto 29px !important;
+  border: 2px solid #f0cc80 !important;
+  color: #f8dda2 !important;
+  font-size: 22px !important;
+  box-shadow: 0 0 30px rgba(240, 204, 128, .16);
+}
+.preloader-inner .brand-mark span { color: #f8dda2 !important; }
+.preloader-inner p {
+  margin: 4px 0 17px;
+  color: #f4dca8 !important;
+  font-family: var(--app-font-mono, monospace);
+  font-size: 11px !important;
+  font-weight: 700;
+  letter-spacing: .13em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+.preloader-line {
+  width: min(235px, 70vw) !important;
+  height: 4px !important;
+  margin: 0 auto !important;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .20) !important;
+  overflow: hidden;
+}
+.preloader-line::after {
+  width: 40%;
+  border-radius: 20px;
+  background: #f3c971 !important;
+  box-shadow: 0 0 15px rgba(243, 201, 113, .55);
+  animation: bino-preloader-progress 1.05s ease-in-out infinite alternate !important;
+}
+@keyframes bino-preloader-progress {
+  from { transform: translateX(-15%); }
+  to { transform: translateX(160%); }
+}
+.preloader.done {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+@media (max-width: 600px) {
+  .preloader::before { inset: 11px; }
+  .preloader-inner { min-width: 0; width: min(340px, calc(100vw - 44px)); padding: 37px 24px; }
+  .preloader-inner::before { font-size: 24px; letter-spacing: .06em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader-line::after { animation: none !important; transform: translateX(75%); }
+}
+/* BINO PRELOADER CONTRAST V2 END */
