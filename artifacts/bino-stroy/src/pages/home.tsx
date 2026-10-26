@@ -1972,22 +1972,21 @@ function Home() {
                 </svg>
                 <span>Telegram</span>
               </a>
-              <a
          
-            className="bino-social-link"
-            href="https://www.instagram.com/spooobino/"
-          target="_blank"
-             rel="noopener noreferrer"
-            aria-label="Instagram — @spooobino"
-               data-testid="link-instagram"
+<a
+  className="bino-social-link"
+  href="https://www.instagram.com/spooobino/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram — @spooobino"
+  data-testid="link-instagram"
 >
+  <Instagram size={27} strokeWidth={1.7} aria-hidden="true" />
+  <span>Instagram</span>
+</a>
 
+<a
 
-              >
-                <Instagram size={27} strokeWidth={1.7} aria-hidden="true" />
-                <span>Instagram</span>
-              </a>
-              <a
                 className="bino-social-link"
                 href="https://wa.me/998977240002"
                 target="_blank"
