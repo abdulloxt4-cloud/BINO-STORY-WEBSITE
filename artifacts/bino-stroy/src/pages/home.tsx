@@ -1973,12 +1973,16 @@ function Home() {
                 <span>Telegram</span>
               </a>
               <a
-                className="bino-social-link"
-                href="https://www.instagram.com/bino.stroy/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram — @bino.stroy"
-                data-testid="link-instagram"
+         
+            className="bino-social-link"
+            href="https://www.instagram.com/spooobino/"
+          target="_blank"
+             rel="noopener noreferrer"
+            aria-label="Instagram — @spooobino"
+               data-testid="link-instagram"
+>
+
+
               >
                 <Instagram size={27} strokeWidth={1.7} aria-hidden="true" />
                 <span>Instagram</span>
