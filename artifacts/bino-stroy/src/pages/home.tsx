@@ -749,6 +749,9 @@ function Header({
             </a>
           ))}
         </nav><div className="header-right">
+          <a className="bino-price-nav" href="/price-list/" target="_blank" rel="noopener noreferrer" data-testid="link-price-list">
+            {i18n.language.startsWith('zh') ? '价格表' : i18n.language.startsWith('ru') ? 'Прайс-лист' : i18n.language.startsWith('en') ? 'Price List' : 'Narxlar'} <ArrowUpRight size={14} />
+          </a>
           <nav
             className="lang-switch"
             aria-label={t('labels.language')}
@@ -804,6 +807,10 @@ function Header({
               {item.label}
             </a>
           ))}
+          <a href="/price-list/" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} data-testid="link-index-price-list">
+            <span className="mono" style={{ color: '#d9a441', fontSize: 9, marginRight: 15 }}>08</span>
+            {i18n.language.startsWith('zh') ? '价格表' : i18n.language.startsWith('ru') ? 'Прайс-лист' : i18n.language.startsWith('en') ? 'Price List' : 'Narxlar'} ↗
+          </a>
         </nav>
       )}
     </>

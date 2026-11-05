@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Illustrative waterproofing roll, NON-FOIL, POLYESTER">
+    <defs><radialGradient id="bg"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#e3edf3"/></radialGradient>
+      <linearGradient id="roll" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#4e5963"/><stop offset=".42" stop-color="#151e2b"/><stop offset=".78" stop-color="#0a111c"/><stop offset="1" stop-color="#414f5b"/></linearGradient>
+      <linearGradient id="foil" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#7c94af"/><stop offset=".26" stop-color="#f8ffff"/><stop offset=".47" stop-color="#a7bdd5"/><stop offset=".69" stop-color="#ffffff"/><stop offset="1" stop-color="#768ba9"/></linearGradient>
+      <linearGradient id="matte" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#313a42"/><stop offset=".5" stop-color="#121a24"/><stop offset="1" stop-color="#44515e"/></linearGradient>
+      <linearGradient id="end" x1="0" x2="1"><stop stop-color="#384856"/><stop offset="1" stop-color="#07111f"/></linearGradient>
+      <filter id="shadow"><feGaussianBlur stdDeviation="13"/></filter></defs>
+    <rect width="800" height="500" fill="url(#bg)"/>
+    <path d="M54 100 L754 100" stroke="#d2e0ed" stroke-width="1"/>
+    <ellipse cx="426" cy="389" rx="293" ry="46" fill="#637d9e" opacity=".18" filter="url(#shadow)"/>
+    <path d="M130 266 L450 195 L739 255 L415 343 Z" fill="url(#matte)" stroke="#1f2833" stroke-width="2"/>
+    <path d="M175 215 Q157 161 219 145 L608 119 Q673 120 685 168 L695 290 Q689 316 649 327 L245 351 Q186 347 175 298 Z" fill="url(#roll)" stroke="#121b28" stroke-width="4"/>
+    <path d="M184 210 L605 175" stroke="#738598" stroke-opacity=".4" stroke-width="6"/>
+    <ellipse cx="230" cy="280" rx="80" ry="76" fill="url(#end)" stroke="#85909a" stroke-width="5"/>
+    <ellipse cx="230" cy="280" rx="55" ry="52" fill="none" stroke="#8f9ba7" stroke-width="12" opacity=".6"/>
+    <ellipse cx="230" cy="280" rx="30" ry="30" fill="#141e29" stroke="#65717e" stroke-width="9"/>
+    <ellipse cx="230" cy="280" rx="14" ry="14" fill="#040a11"/>
+    <path d="M600 152 Q663 157 674 199 L683 277" stroke="#8296ab" stroke-opacity=".5" stroke-width="7" fill="none"/>
+    <path d="M315 247 L560 231" stroke="#ffffff" stroke-opacity=".06" stroke-width="2"/>
+    <text x="398" y="274" fill="#fff" font-family="Arial,sans-serif" font-size="39" font-weight="700" transform="rotate(-6 398 274)" letter-spacing="6">BINO</text>
+    <text x="405" y="295" fill="#d8e4ee" font-family="Arial,sans-serif" font-size="12" transform="rotate(-6 405 295)">WATERPROOFING</text>
+    <rect x="42" y="34" width="166" height="37" rx="18" fill="#33445b"/>
+    <text x="125" y="58" fill="white" text-anchor="middle" font-size="13" font-family="Arial,sans-serif" font-weight="700" letter-spacing="1">NON-FOIL</text>
+    <text x="748" y="453" fill="#57708a" text-anchor="end" font-size="13" font-family="Arial,sans-serif" letter-spacing="2">POLYESTER • ILLUSTRATION</text>
+    </svg>

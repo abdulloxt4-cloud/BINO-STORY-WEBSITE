@@ -2569,3 +2569,9 @@ body #contact .footer .brand > span:last-child {
   .preloader-line::after { animation: none !important; transform: translateX(75%); }
 }
 /* BINO PRELOADER CONTRAST V2 END */
+
+/* Price List button — only the new element is styled; original site rules unchanged. */
+.site-header .bino-price-nav{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;padding:10px 13px;border-radius:8px;background:#0968dc;color:#fff!important;font-weight:750;font-size:12px;text-decoration:none;box-shadow:0 4px 16px rgba(0,90,206,.17)}
+.site-header .bino-price-nav:hover{background:#024fb6;color:#fff!important}
+@media(max-width:767px){.site-header .bino-price-nav{padding:8px 10px;font-size:10px}}
+@media(max-width:400px){.site-header .bino-price-nav{padding:7px 8px;font-size:9px}}

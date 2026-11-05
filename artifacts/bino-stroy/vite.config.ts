@@ -48,6 +48,12 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, 'dist/public'),
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(import.meta.dirname, 'index.html'),
+        priceList: path.resolve(import.meta.dirname, 'price-list/index.html'),
+      },
+    },
   },
   server: {
     // BINO API PROXY V1 — local dev only; backend must run on port 3001.
