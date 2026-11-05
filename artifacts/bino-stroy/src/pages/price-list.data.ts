@@ -8,16 +8,16 @@ export type PriceProduct = {
   needsVerification?: boolean;
 };
 export const products: PriceProduct[] = [
-  { id: 'fiber-20-foil', thickness: '2.0', foil: true, base: 'fiberglass', uzs: 13500, photo: '/price-images/product-1.webp' },
-  { id: 'fiber-20-plain', thickness: '2.0', foil: false, base: 'fiberglass', uzs: 12500, photo: '/price-images/product-2.webp' },
-  { id: 'fiber-25-foil', thickness: '2.5', foil: true, base: 'fiberglass', uzs: 14000, photo: '/price-images/product-3.webp' },
-  { id: 'fiber-25-plain', thickness: '2.5', foil: false, base: 'fiberglass', uzs: 13000, photo: '/price-images/product-4.webp' },
-  { id: 'fiber-30-foil', thickness: '3.0', foil: true, base: 'fiberglass', uzs: 15000, photo: '/price-images/product-5.webp' },
-  { id: 'fiber-30-plain', thickness: '3.0', foil: false, base: 'fiberglass', uzs: 14000, photo: '/price-images/product-6.webp' },
-  { id: 'fiber-40-foil', thickness: '4.0', foil: true, base: 'fiberglass', uzs: 18000, photo: '/price-images/product-7.webp' },
-  { id: 'fiber-40-plain', thickness: '4.0', foil: false, base: 'fiberglass', uzs: 17000, photo: '/price-images/product-8.webp' },
-  { id: 'polyester-foil', thickness: '±0.2', foil: true, base: 'polyester', uzs: 250000, photo: '/price-images/polyester-photo-foil.webp', needsVerification: true },
-  { id: 'polyester-plain', thickness: '±0.2', foil: false, base: 'polyester', uzs: 240000, photo: '/price-images/polyester-photo-plain.webp', needsVerification: true },
+  { id: 'fiber-20-foil', thickness: '2.0', foil: true, base: 'fiberglass', uzs: 17000, photo: '/price-images/product-1.webp' },
+  { id: 'fiber-20-plain', thickness: '2.0', foil: false, base: 'fiberglass', uzs: 16000, photo: '/price-images/product-2.webp' },
+  { id: 'fiber-25-foil', thickness: '2.5', foil: true, base: 'fiberglass', uzs: 18000, photo: '/price-images/product-3.webp' },
+  { id: 'fiber-25-plain', thickness: '2.5', foil: false, base: 'fiberglass', uzs: 17000, photo: '/price-images/product-4.webp' },
+  { id: 'fiber-30-foil', thickness: '3.0', foil: true, base: 'fiberglass', uzs: 20000, photo: '/price-images/product-5.webp' },
+  { id: 'fiber-30-plain', thickness: '3.0', foil: false, base: 'fiberglass', uzs: 19000, photo: '/price-images/product-6.webp' },
+  { id: 'fiber-40-foil', thickness: '4.0', foil: true, base: 'fiberglass', uzs: 25000, photo: '/price-images/product-7.webp' },
+  { id: 'fiber-40-plain', thickness: '4.0', foil: false, base: 'fiberglass', uzs: 24000, photo: '/price-images/product-8.webp' },
+  { id: 'polyester-foil', thickness: '±0.2', foil: true, base: 'polyester', uzs: 300000, photo: '/price-images/polyester-photo-foil.webp', needsVerification: true },
+  { id: 'polyester-plain', thickness: '±0.2', foil: false, base: 'polyester', uzs: 290000, photo: '/price-images/polyester-photo-plain.webp', needsVerification: true },
 ];
 
 export type PriceLang = 'uz' | 'ru' | 'en' | 'zh';
