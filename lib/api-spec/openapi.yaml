@@ -11,7 +11,7 @@ tags:
   - name: health
     description: Health operations
   - name: bino
-    description: BINO STROY customer interactions
+    description: SP OOO BINO customer interactions
 paths:
   /healthz:
     get:
@@ -52,7 +52,7 @@ paths:
     get:
       operationId: getBinoSiteConfig
       tags: [bino]
-      summary: Get editable BINO STROY contact and counter values
+      summary: Get editable SP OOO BINO contact and counter values
       responses:
         "200":
           description: Public site configuration

@@ -1,7 +1,7 @@
 
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { ContactShadows, Float } from '@react-three/drei';
-import { Suspense, useEffect, useMemo, useRef } from 'react';
+import { Suspense, useMemo, useRef } from 'react';
 import type { MutableRefObject } from 'react';
 import * as THREE from 'three';
 
@@ -111,174 +111,22 @@ const surfaceStyles: Record<Surface, SurfaceStyle> = {
   },
 };
 
-function seeded(seed: number) {
-  let value = seed % 2147483647;
-
-  if (value <= 0) value += 2147483646;
-
-  return () => {
-    value = (value * 16807) % 2147483647;
-    return (value - 1) / 2147483646;
-  };
-}
-
-function createSurfaceTexture(
-  surface: Surface,
-  seed: number,
-  brand: 'none' | 'top' | 'roll' = 'none',
-) {
-  const canvas = document.createElement('canvas');
-  canvas.width = 1024;
-  canvas.height = 512;
-
-  const ctx = canvas.getContext('2d');
-  const texture = new THREE.CanvasTexture(canvas);
-  const style = surfaceStyles[surface];
-
-  if (!ctx) return texture;
-
-  const random = seeded(seed);
-  const width = canvas.width;
-  const height = canvas.height;
-
-  ctx.fillStyle = style.base;
-  ctx.fillRect(0, 0, width, height);
-
-  const shade = ctx.createLinearGradient(0, 0, width, height);
-
-  shade.addColorStop(0, 'rgba(255,255,255,0.12)');
-  shade.addColorStop(0.55, 'rgba(255,255,255,0)');
-  shade.addColorStop(1, 'rgba(0,0,0,0.16)');
-
-  ctx.fillStyle = shade;
-  ctx.fillRect(0, 0, width, height);
-
-  for (let i = 0; i < style.density; i++) {
-    const x = random() * width;
-    const y = random() * height;
-
-    const size =
-      surface === 'black'
-        ? 0.5 + random() * 1.9
-        : 0.75 + random() * 3.3;
-
-    ctx.fillStyle =
-      style.chips[Math.floor(random() * style.chips.length)];
-
-    ctx.globalAlpha = 0.23 + random() * 0.66;
-
-    ctx.beginPath();
-    ctx.moveTo(x - size, y - size * 0.4);
-    ctx.lineTo(x + size * 0.65, y - size * 0.75);
-    ctx.lineTo(x + size, y + size * 0.2);
-    ctx.lineTo(x - size * 0.25, y + size * 0.83);
-    ctx.closePath();
-    ctx.fill();
-  }
-
-  ctx.globalAlpha = 1;
-
-  if (surface === 'woven') {
-    ctx.strokeStyle = 'rgba(236,232,221,0.16)';
-    ctx.lineWidth = 2;
-
-    for (let x = 0; x < width; x += 26) {
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, height);
-      ctx.stroke();
-    }
-
-    for (let y = 0; y < height; y += 26) {
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(width, y);
-      ctx.stroke();
-    }
-  }
-
-  if (surface === 'foil') {
-    for (let i = 0; i < 90; i++) {
-      ctx.strokeStyle =
-        `rgba(255,255,255,${0.03 + random() * 0.15})`;
-
-      ctx.lineWidth = 1 + random() * 2;
-
-      const y = random() * height;
-
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(width, y + (random() - 0.5) * 30);
-      ctx.stroke();
-    }
-  }
-
-  if (brand === 'top') {
-    const centerX = width / 2;
-    const centerY = height / 2;
-
-    ctx.fillStyle = 'rgba(10,12,12,0.88)';
-    ctx.fillRect(centerX - 225, centerY - 98, 450, 196);
-
-    ctx.strokeStyle = '#b5a78d';
-    ctx.lineWidth = 4;
-    ctx.strokeRect(centerX - 219, centerY - 92, 438, 184);
-
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-
-    ctx.fillStyle = '#f2f0e9';
-    ctx.font = 'bold 132px Arial, sans-serif';
-    ctx.fillText('BINO', centerX, centerY - 12);
-
-    ctx.fillStyle = '#cfc6b3';
-    ctx.font = 'bold 18px Arial, sans-serif';
-    ctx.fillText('WATERPROOFING', centerX, centerY + 65);
-  }
-
-  if (brand === 'roll') {
-    const band = 35;
-    const cells = 20;
-
-    for (const yStart of [0, height - band]) {
-      for (let x = 0; x < width; x += cells) {
-        for (let y = yStart; y < yStart + band; y += cells) {
-          const even =
-            (
-              Math.floor(x / cells) +
-              Math.floor((y - yStart) / cells)
-            ) % 2 === 0;
-
-          ctx.fillStyle = even ? '#dedbd2' : '#3b3d3c';
-          ctx.fillRect(x, y, cells, cells);
-        }
-      }
-    }
-
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-
-    for (let i = 0; i < 4; i++) {
-      const x = 128 + i * 256;
-
-      ctx.fillStyle = 'rgba(11,12,13,0.65)';
-      ctx.fillRect(x - 113, 190, 226, 128);
-
-      ctx.fillStyle = '#eeeae1';
-      ctx.font = 'bold 70px Arial, sans-serif';
-      ctx.fillText('BINO', x, 248);
-
-      ctx.fillStyle = '#c0b7a7';
-      ctx.font = 'bold 12px Arial, sans-serif';
-      ctx.fillText('WATERPROOFING', x, 287);
-    }
-  }
-
-  texture.colorSpace = THREE.SRGBColorSpace;
-  texture.anisotropy = 8;
-  texture.needsUpdate = true;
-
-  return texture;
+/**
+ * 1024x512 patterns were generated offline from the original
+ * createSurfaceTexture() function. Loading these textures avoids thousands of
+ * Canvas2D draw calls on the user's main thread while keeping all 3D geometry,
+ * colors, lighting, and animation equations untouched.
+ *
+ * If the texture layout is updated in the future, regenerate /surface-textures.
+ */
+function useSurfaceTexture(asset: string): THREE.Texture {
+  const texture = useLoader(THREE.TextureLoader, `/surface-textures/${asset}`);
+  return useMemo(() => {
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.anisotropy = 8;
+    texture.needsUpdate = true;
+    return texture;
+  }, [texture]);
 }
 
 function RollPiece({
@@ -300,22 +148,7 @@ function RollPiece({
   const radius = 0.88 - index * 0.095;
   const baseY = (index - 2) * 0.085;
 
-  const texture = useMemo(
-    () =>
-      createSurfaceTexture(
-        surface,
-        100 + index * 29,
-        index === 0 ? 'roll' : 'none',
-      ),
-    [surface, index],
-  );
-
-  useEffect(
-    () => () => {
-      texture.dispose();
-    },
-    [texture],
-  );
+  const texture = useSurfaceTexture(`roll-${index}.webp`);
 
   return (
     <group
@@ -416,28 +249,8 @@ function SystemPiece({
   const height = isBino ? 0.11 : 0.19;
   const baseY = (index - (count - 1) / 2) * 0.19;
 
-  const textures = useMemo(
-    () => ({
-      top: createSurfaceTexture(
-        surface,
-        index * 41 + (kind === 'roof' ? 940 : 410),
-        showLogo ? 'top' : 'none',
-      ),
-      side: createSurfaceTexture(
-        surface,
-        index * 73 + (kind === 'roof' ? 1820 : 1260),
-      ),
-    }),
-    [surface, index, kind, showLogo],
-  );
-
-  useEffect(
-    () => () => {
-      textures.top.dispose();
-      textures.side.dispose();
-    },
-    [textures],
-  );
+  const topTexture = useSurfaceTexture(`${kind}-${index}-top.webp`);
+  const sideTexture = useSurfaceTexture(`${kind}-${index}-side.webp`);
 
   const roughness = surfaceStyles[surface].roughness;
   const metalness = surfaceStyles[surface].metalness;
@@ -452,44 +265,44 @@ function SystemPiece({
 
         <meshStandardMaterial
           attach="material-0"
-          map={textures.side}
+          map={sideTexture}
           roughness={roughness}
           metalness={metalness}
         />
 
         <meshStandardMaterial
           attach="material-1"
-          map={textures.side}
+          map={sideTexture}
           roughness={roughness}
           metalness={metalness}
         />
 
         <meshStandardMaterial
           attach="material-2"
-          map={textures.top}
+          map={topTexture}
           roughness={roughness}
           metalness={metalness}
-          bumpMap={showLogo ? undefined : textures.top}
+          bumpMap={showLogo ? undefined : topTexture}
           bumpScale={showLogo || isBino ? 0 : 0.014}
         />
 
         <meshStandardMaterial
           attach="material-3"
-          map={textures.side}
+          map={sideTexture}
           roughness={roughness}
           metalness={metalness}
         />
 
         <meshStandardMaterial
           attach="material-4"
-          map={textures.side}
+          map={sideTexture}
           roughness={roughness}
           metalness={metalness}
         />
 
         <meshStandardMaterial
           attach="material-5"
-          map={textures.side}
+          map={sideTexture}
           roughness={roughness}
           metalness={metalness}
         />

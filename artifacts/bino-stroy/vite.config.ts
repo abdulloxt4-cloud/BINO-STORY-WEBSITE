@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
 
-const rawPort = process.env.PORT;
+const rawPort = process.env.PORT || '5173';
 
 if (!rawPort) {
   throw new Error(
@@ -18,13 +18,15 @@ if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);
 }
 
-const basePath = process.env.BASE_PATH;
+const basePath = process.env.BASE_PATH || '/';
 
 if (!basePath) {
   throw new Error(
     'BASE_PATH environment variable is required but was not provided.',
   );
 }
+
+const apiProxyTarget = process.env.API_PROXY_TARGET || 'http://localhost:3001';
 
 export default defineConfig({
   base: basePath,
@@ -56,8 +58,7 @@ export default defineConfig({
     },
   },
   server: {
-    // BINO API PROXY V1 — local dev only; backend must run on port 3001.
-    proxy: { '/api': { target: 'https://bino-story-website.onrender.com', changeOrigin: true } },
+    proxy: { '/api': { target: apiProxyTarget, changeOrigin: true } },
     port,
     strictPort: true,
     host: '0.0.0.0',
