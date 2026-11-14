@@ -1,0 +1,1 @@
+Pre-generated 1024x512 WebP textures from the original seeded Canvas2D drawing. Images use high quality 96 compression; geometries, text labels, color definitions, material settings, lighting and animation behavior remain unchanged. Very small pixel-level differences due to compression/browser fonts are possible.

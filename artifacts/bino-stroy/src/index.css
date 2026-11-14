@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 @import 'tailwindcss';
 
@@ -2575,3 +2574,119 @@ body #contact .footer .brand > span:last-child {
 .site-header .bino-price-nav:hover{background:#024fb6;color:#fff!important}
 @media(max-width:767px){.site-header .bino-price-nav{padding:8px 10px;font-size:10px}}
 @media(max-width:400px){.site-header .bino-price-nav{padding:7px 8px;font-size:9px}}
+
+/* SP OOO BINO — responsive hardening, 2026-11-09.
+ * Only mobile layout, overflow safety, touch ergonomics and safe-area handling.
+ * No theme, timing, transform, 3D geometry, copy or animation keyframe changes.
+ */
+@media (max-width: 767px) {
+  .site-header .header-right,
+  .site-header .lang-switch,
+  .site-header .bino-price-nav { min-width: 0; }
+  .site-header .brand { flex-shrink: 0; }
+  .hero-content,
+  .technical-scene .section-head,
+  .technical-scene .scene-aside,
+  .contact-title,
+  .contact-grid > *,
+  #why .why-insights-intro > *,
+  #why .why-cta > * { min-width: 0; }
+  .hero h1,
+  .section-head h2,
+  .applications-heading h2,
+  .why-title h2,
+  .contact-title h2 { overflow-wrap: break-word; }
+  .technical-scene .scene-controls { max-width: 100%; }
+  .technical-scene .scene-control-button { min-width: 0; }
+  .chat-panel { max-width: calc(100vw - 24px); }
+  .preloader-inner { max-width: calc(100vw - 32px); }
+}
+/* Below 360px the 4-language switch and the price link cannot reliably
+ * fit beside the brand. Keep all controls accessible in two rows. */
+@media (max-width: 360px) {
+  .site-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    grid-template-rows: auto auto;
+    column-gap: 8px;
+    row-gap: 6px;
+    height: auto;
+    min-height: 80px;
+    align-content: center;
+    padding: calc(7px + env(safe-area-inset-top)) 12px 7px;
+  }
+  .site-header .header-right { display: contents; }
+  .site-header .brand { grid-column: 1; grid-row: 1; min-width: 0; }
+  .site-header .index-trigger { grid-column: 2; grid-row: 1; justify-self: end; width: 34px; height: 34px; }
+  .site-header .bino-price-nav {
+    grid-column: 1; grid-row: 2;
+    justify-self: start;
+    max-width: 100%;
+  }
+  .site-header .lang-switch { grid-column: 2; grid-row: 2; justify-self: end; gap: 2px; }
+  .site-header .lang-switch button { padding: 8px 3px; font-size: 9px; }
+  .menu-panel { top: calc(89px + env(safe-area-inset-top)); right: 8px; width: calc(100vw - 16px); }
+  .hero-content { padding-top: calc(112px + env(safe-area-inset-top)); }
+  section[id] { scroll-margin-top: calc(92px + env(safe-area-inset-top)); }
+}
+
+/* Direct links from the price list land just below the fixed header. */
+#lead-form { scroll-margin-top: calc(94px + env(safe-area-inset-top)); }
+
+
+/* 2026-11-14 polish: language switcher, main contact order, and clean 20-year tag */
+.site-header .lang-switch{padding:4px;border:1px solid #cbd9e7;background:rgba(255,255,255,.92)!important;border-radius:999px;box-shadow:0 8px 22px rgba(20,52,83,.10);}
+.site-header .lang-switch button{min-width:44px;padding:9px 10px;border-radius:999px;font-weight:700;transition:background-color .18s ease,color .18s ease,box-shadow .18s ease;}
+.site-header .lang-switch button.active{background:linear-gradient(135deg,#d9ac4f,#bf8726)!important;color:#fff!important;box-shadow:0 6px 14px rgba(191,135,38,.28);border-bottom-color:transparent!important;}
+#why .bino-why-tag{gap:8px;padding:10px 14px;border-radius:16px;background:linear-gradient(135deg,rgba(18,44,69,.88),rgba(26,58,87,.78));backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
+#why .bino-why-tag strong{font-size:34px;}
+#why .bino-why-tag span{display:block;max-width:170px;line-height:1.2;}
+@media(max-width:767px){.site-header .lang-switch{padding:3px;gap:2px;border-radius:20px}.site-header .lang-switch button{min-width:40px;padding:8px 8px;font-size:10px}#why .bino-why-tag{padding:8px 10px;border-radius:12px}#why .bino-why-tag strong{font-size:28px}#why .bino-why-tag span{font-size:11px;max-width:120px}}
+
+
+/* FINAL DEMO 2026-11-14: metric digits are nested spans; correct the inherited 11px caption rule */
+#why .metrics { align-items: stretch; }
+#why .metric { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-width:0; gap:9px; padding-top:22px; padding-bottom:22px; }
+#why .metric strong { display:block; font-size:clamp(38px,4vw,62px) !important; font-weight:800 !important; line-height:1 !important; letter-spacing:-.045em; margin:0 !important; font-variant-numeric:tabular-nums; }
+#why .metric strong > span { font-size:inherit !important; line-height:inherit !important; font-weight:inherit !important; color:inherit !important; display:inline-block !important; }
+#why .metric > span { display:block; font-size:clamp(12px,1vw,14px) !important; line-height:1.45 !important; color:#526d88 !important; max-width:230px; }
+@media(max-width:767px) { #why .metric {min-height:120px; gap:7px; padding-top:18px; padding-bottom:18px;} #why .metric strong {font-size:clamp(36px,8vw,48px) !important;} #why .metric > span {font-size:12px !important;} }
+
+/* 2026-11-14 MOBILE SAFETY / approved look unchanged:
+   two fixed-header rows on phones; do not overlap Narxlar, languages and menu. */
+@media (max-width:767px) {
+  body .site-header {
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) max-content;
+    grid-template-rows: minmax(32px,auto) minmax(38px,auto);
+    align-content:center;
+    align-items:center;
+    column-gap:8px;
+    row-gap:5px;
+    height:auto;
+    min-height:calc(96px + env(safe-area-inset-top));
+    padding:calc(7px + env(safe-area-inset-top)) 12px 7px !important;
+  }
+  body .site-header .bino-top-links{display:none !important;}
+  body .site-header .header-right {display:contents !important;}
+  body .site-header .brand {grid-column:1;grid-row:1;min-width:0;max-width:100%;font-size:clamp(11px,3.6vw,14px);white-space:nowrap;}
+  body .site-header .bino-price-nav {grid-column:1;grid-row:2;justify-self:start;white-space:nowrap;min-height:35px;max-width:100%;}
+  body .site-header .lang-switch {grid-column:2;grid-row:2;justify-self:end;display:flex !important;gap:1px !important;padding:3px !important;min-width:0;max-width:100%;}
+  body .site-header .lang-switch button {min-width:clamp(28px,8.4vw,39px);padding:8px 4px !important;font-size:clamp(9px,2.6vw,11px);line-height:1.25;white-space:nowrap;}
+  body .site-header .index-trigger {grid-column:2;grid-row:1;justify-self:end;margin:0;min-width:36px;width:36px;height:36px;}
+  body .menu-panel {top:calc(101px + env(safe-area-inset-top));right:8px;max-width:calc(100vw - 16px);}
+  body .hero-content {padding-top:max(115px,calc(108px + env(safe-area-inset-top)));}
+  body section[id], body #lead-form {scroll-margin-top:calc(112px + env(safe-area-inset-top));}
+  body .chat-panel{max-width:calc(100vw - 20px);}
+  body #why .metric strong{font-size:clamp(36px,8vw,49px) !important;}
+  body #why .metric strong > span{font-size:inherit !important;line-height:inherit !important;}
+}
+@media (max-width:340px){
+  body .site-header {column-gap:4px;padding-left:9px !important;padding-right:9px !important;}
+  body .site-header .lang-switch button {min-width:27px;padding:7px 2px !important;font-size:9px;}
+  body .site-header .bino-price-nav {padding:8px 9px;font-size:10px;}
+  body .site-header .brand{font-size:11px;gap:6px;}
+}
+@media (prefers-reduced-motion: reduce) {
+  body .site-header .lang-switch button {transition:none !important;}
+}

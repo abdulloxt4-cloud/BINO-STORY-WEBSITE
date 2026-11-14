@@ -1,9 +1,9 @@
 export type PriceProduct = {
   id: string;
-  thickness: '2.0' | '2.5' | '3.0' | '4.0' | '±0.2';
+  thickness: '2.0' | '2.5' | '3.0' | '4.0' | null;
   foil: boolean;
   base: 'fiberglass' | 'polyester';
-  uzs: number;
+  uzs: number | null;
   photo: string;
   needsVerification?: boolean;
 };
@@ -16,8 +16,8 @@ export const products: PriceProduct[] = [
   { id: 'fiber-30-plain', thickness: '3.0', foil: false, base: 'fiberglass', uzs: 19000, photo: '/price-images/product-6.webp' },
   { id: 'fiber-40-foil', thickness: '4.0', foil: true, base: 'fiberglass', uzs: 25000, photo: '/price-images/product-7.webp' },
   { id: 'fiber-40-plain', thickness: '4.0', foil: false, base: 'fiberglass', uzs: 24000, photo: '/price-images/product-8.webp' },
-  { id: 'polyester-foil', thickness: '±0.2', foil: true, base: 'polyester', uzs: 300000, photo: '/price-images/polyester-photo-foil.webp', needsVerification: true },
-  { id: 'polyester-plain', thickness: '±0.2', foil: false, base: 'polyester', uzs: 290000, photo: '/price-images/polyester-photo-plain.webp', needsVerification: true },
+  { id: 'polyester-foil', thickness: null, foil: true, base: 'polyester', uzs: 300000, photo: '/price-images/polyester-photo-foil.webp', needsVerification: true },
+  { id: 'polyester-plain', thickness: null, foil: false, base: 'polyester', uzs: 290000, photo: '/price-images/polyester-photo-plain.webp', needsVerification: true },
 ];
 
 export type PriceLang = 'uz' | 'ru' | 'en' | 'zh';
@@ -41,10 +41,15 @@ export function convertPrice(uzs: number, language: PriceLang, fx: FxRates): num
   return Number.isFinite(rate) && rate > 0 ? uzs / rate : NaN;
 }
 
-export function formatPrice(uzs: number, language: PriceLang, fx: FxRates): string {
+function groupUzs(value: number): string {
+  return String(Math.round(value)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
+export function formatPrice(uzs: number | null, language: PriceLang, fx: FxRates): string {
+  if (uzs === null) return '';
   const price = convertPrice(uzs, language, fx);
   if (!Number.isFinite(price)) return '—';
-  if (language === 'uz') return `${new Intl.NumberFormat('uz-UZ', {maximumFractionDigits: 0}).format(price).replace(/\u00a0/g,' ')} so‘m`;
+  if (language === 'uz') return `${groupUzs(price)} so‘m`;
   const locale = language === 'ru' ? 'ru-RU' : language === 'zh' ? 'zh-CN' : 'en-US';
   const symbol = language === 'ru' ? '₽' : language === 'zh' ? '¥' : '$';
   const n = new Intl.NumberFormat(locale, {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(price);

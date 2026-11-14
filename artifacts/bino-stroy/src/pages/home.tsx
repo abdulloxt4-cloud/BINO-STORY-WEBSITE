@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { FormEvent, MutableRefObject, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createPortal } from 'react-dom';
@@ -35,7 +35,11 @@ import type {
   BinoLeadInput,
   BinoSiteConfig,
 } from '@workspace/api-client-react';
-import { BinoModel } from '@/components/bino-model';
+// Do not download and parse the heavy 3D renderer until a 3D scene is needed.
+// The scene code and animation settings themselves are unchanged.
+const BinoModel = lazy(() =>
+  import('@/components/bino-model').then((module) => ({ default: module.BinoModel })),
+);
 import { assistantProductContext } from '@/i18n/config';
 type Lang = 'uz' | 'ru' | 'en' | 'zh';
 /* BINO ZH SUPPORT 2026 */
@@ -588,6 +592,85 @@ const styles = `
   #uses .use-card:hover,
   #uses .use-card:hover .use-illustration img { transform: none; }
 }
+
+/* Ultra-narrow screens: prevent content escaping its card without changing
+ * images, fonts, text, effects, animation paths or larger viewport layouts. */
+@media (max-width: 360px) {
+  #contact .bino-social-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #contact .bino-contact-phone-number {
+    font-size: clamp(18px, 6.2vw, 22px);
+    white-space: normal;
+    flex-wrap: wrap;
+  }
+  #contact .bino-map-heading, #contact .bino-location-heading,
+  #contact .bino-location-heading > div { min-width: 0; }
+  #contact .bino-map-bottom span { overflow-wrap: anywhere; }
+  #why .why-cta-button { max-width: 100%; }
+}
+/* DEMO ONLY: selected premium inquiry layout. Scoped to #contact; all other scenes untouched. */
+#contact.bino-premium-contact { background:#dbe7f1!important; color:#173452!important; padding:clamp(100px,9vw,145px) max(16px,5vw) 48px!important; }
+#contact.bino-premium-contact .contact-grid { max-width:1320px; margin-inline:auto; display:grid!important; grid-template-columns:minmax(0,1fr) minmax(0,1.02fr)!important; gap:clamp(20px,3vw,50px)!important; align-items:stretch!important; }
+#contact.bino-premium-contact .contact-title { position:relative; overflow:hidden; isolation:isolate; min-height:600px; padding:clamp(22px,3vw,43px); background:linear-gradient(150deg,#e6eff8,#dce8f2); border:1px solid #d6e2ef; border-radius:24px; box-shadow:0 12px 42px #13335410; }
+#contact.bino-premium-contact .contact-title::before { content:''; position:absolute; z-index:-1; right:-12%; top:0; width:94%; height:72%; background:linear-gradient(90deg,#e6eff8 3%,#e6eff8dd 26%,#e6eff800 100%),url('/price-images/roof-hero.webp') 65% center/cover no-repeat; opacity:.55; pointer-events:none; }
+#contact.bino-premium-contact .contact-title::after { content:''; position:absolute; z-index:-1; inset:40% 0 0; background:linear-gradient(0deg,#dce8f2 32%,#dce8f200 100%);pointer-events:none; }
+#contact.bino-premium-contact .contact-title .eyebrow { color:#9d7428!important; font-weight:750; font-size:11px; letter-spacing:.17em; }
+#contact.bino-premium-contact .contact-title h2 { font-family:Georgia,'Times New Roman',serif; color:#102f52!important; font-weight:700; letter-spacing:-.045em; font-size:clamp(36px,4.2vw,65px)!important; line-height:1.03!important; max-width:660px; margin:16px 0 13px; }
+#contact.bino-premium-contact .contact-title>p { color:#395b7d!important; font-size:clamp(14px,1.2vw,18px); line-height:1.5; max-width:430px; }
+#contact.bino-premium-contact .bino-contact-phone { margin-top:clamp(24px,4vw,54px); border:1px solid #d5ab5b; background:#f8fafddd; border-radius:14px; padding:17px 20px; box-shadow:0 8px 22px #233d5915; width:fit-content; max-width:100%; }
+#contact.bino-premium-contact .bino-contact-phone-number { color:#173452!important; border:0; font-size:clamp(20px,2.1vw,27px); font-weight:780; }
+#contact.bino-premium-contact .bino-contact-eyebrow { color:#a4772b!important; margin-bottom:3px; }
+#contact.bino-premium-contact .bino-more-phones a { color:#305678!important; }
+#contact.bino-premium-contact .bino-social-head { margin-top:32px; }
+#contact.bino-premium-contact .bino-social-head h3 { color:#153455!important;font-size:22px; }
+#contact.bino-premium-contact .bino-social-head p { color:#4c6a85!important; }
+#contact.bino-premium-contact .bino-social-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+#contact.bino-premium-contact .bino-social-link { background:#f7faffeb!important; border:1px solid #c4d3e2!important; border-radius:14px; min-height:78px; padding:11px 6px; box-shadow:0 4px 13px #1439570d; }
+#contact.bino-premium-contact .bino-social-link:hover { border-color:#c9a056!important; transform:translateY(-2px); }
+#contact.bino-premium-contact .bino-social-link svg { color:#b78a36!important; }
+#contact.bino-premium-contact .bino-social-link span { color:#173452!important;font-size:clamp(10px,1vw,13px); }
+#contact.bino-premium-contact .bino-premium-form-card { min-width:0; align-self:stretch; padding:clamp(20px,3vw,36px); background:#ffffffec; border:1px solid #d0a64d; border-radius:25px;box-shadow:0 16px 35px #14345313; scroll-margin-top:110px; }
+#contact.bino-premium-contact .bino-premium-form-title { display:flex; align-items:flex-start; gap:16px; margin-bottom:23px; }
+#contact.bino-premium-contact .bino-premium-form-icon { display:flex; align-items:center; justify-content:center; flex:0 0 52px; height:52px; border-radius:14px; color:#ba8830; background:#f6e9d1;font-size:28px; }
+#contact.bino-premium-contact .bino-premium-form-title h3 { margin:0 0 5px;color:#173452!important;font-size:clamp(21px,2vw,31px);line-height:1.13;font-weight:750; }
+#contact.bino-premium-contact .bino-premium-form-title p { margin:0; color:#57718a; font-size:13px;line-height:1.45; }
+#contact.bino-premium-contact .lead-form { padding:0; gap:17px; scroll-margin-top:110px; }
+#contact.bino-premium-contact .field label { font-family:Arial,sans-serif; text-transform:none;letter-spacing:0; font-size:13px; font-weight:720; color:#183654!important; }
+#contact.bino-premium-contact .field input,#contact.bino-premium-contact .field textarea { min-height:54px; padding:15px 17px; font-size:15px; background:#f7fafd!important; color:#173452!important; border:1px solid #b7cadc!important; border-radius:11px!important; }
+#contact.bino-premium-contact .field textarea { min-height:115px; }
+#contact.bino-premium-contact .field input:focus,#contact.bino-premium-contact .field textarea:focus { border-color:#c39642!important; box-shadow:0 0 0 3px #dab36435; }
+#contact.bino-premium-contact .lead-form>.btn { min-height:58px; width:100%; color:#132c4c!important; font-size:16px; font-weight:780; border:1px solid #c39333;border-radius:12px; background:linear-gradient(110deg,#e7b85c,#b98422)!important; box-shadow:0 7px 18px #b58a3840; }
+#contact.bino-premium-contact .bino-premium-privacy { margin:15px 0 0; text-align:center; color:#586f86; font-size:11px; line-height:1.6; }
+#contact.bino-premium-contact .bino-location { max-width:1320px; margin:28px auto 0; background:#f5f9fd!important; border:1px solid #bfd2e2!important; border-radius:22px;overflow:hidden;box-shadow:0 11px 28px #14345310; }
+#contact.bino-premium-contact .bino-location-top { padding:23px 28px; }
+#contact.bino-premium-contact .bino-location-heading h3 { color:#143452!important; font-weight:760; }
+#contact.bino-premium-contact .bino-location-heading p { color:#537089!important; }
+#contact.bino-premium-contact .bino-map-button { border-radius:12px; background:linear-gradient(110deg,#e2b458,#b78424)!important; }
+#contact.bino-premium-contact .bino-map-frame { height:310px; background:#ebf2f8!important; }
+#contact.bino-premium-contact .footer { max-width:1320px; margin-inline:auto; }
+@media(max-width:960px){
+  #contact.bino-premium-contact .contact-grid { grid-template-columns:1fr!important; }
+  #contact.bino-premium-contact .contact-title { min-height:auto; padding:30px 25px 35px; }
+  #contact.bino-premium-contact .contact-title::before { background-position:67% center; opacity:.37; width:100%; }
+}
+@media(max-width:600px){
+  #contact.bino-premium-contact { padding:100px 14px 30px!important; }
+  #contact.bino-premium-contact .contact-title { padding:22px 16px 25px;border-radius:17px; }
+  #contact.bino-premium-contact .contact-title h2 { font-size:clamp(34px,8vw,49px)!important; }
+  #contact.bino-premium-contact .contact-title>p { font-size:14px; max-width:300px; }
+  #contact.bino-premium-contact .bino-contact-phone { padding:12px 13px; margin-top:23px; }
+  #contact.bino-premium-contact .bino-contact-phone-number { font-size:clamp(17px,5vw,25px);overflow-wrap:anywhere; }
+  #contact.bino-premium-contact .bino-social-head { margin-top:21px; }
+  #contact.bino-premium-contact .bino-social-grid { grid-template-columns:repeat(3,minmax(0,1fr));gap:7px; }
+  #contact.bino-premium-contact .bino-social-link { min-height:76px;padding:9px 3px; }
+  #contact.bino-premium-contact .bino-premium-form-card { padding:19px 15px;border-radius:18px; }
+  #contact.bino-premium-contact .bino-premium-form-icon { flex-basis:41px;height:41px; font-size:21px; }
+  #contact.bino-premium-contact .bino-premium-form-title { gap:11px; }
+  #contact.bino-premium-contact .bino-premium-form-title h3 { font-size:23px; }
+  #contact.bino-premium-contact .bino-location-top { padding:18px; }
+  #contact.bino-premium-contact .bino-map-frame { height:250px; }
+}
+@media(prefers-reduced-motion:reduce){#contact.bino-premium-contact .bino-social-link:hover{transform:none}}
+
 `;
 function detectChatLanguage(text: string, current: Lang): Exclude<Lang, 'zh'> {
   if (/[А-Яа-яЁё]/.test(text)) return 'ru';
@@ -671,7 +754,11 @@ function LazyBinoModel({
         }
       },
       {
-        rootMargin: '650px 0px',
+        // On phones, mounting WebGL far below the fold stalls the first interaction.
+        // Keep the same model and motion, but fetch it only as it approaches view.
+        rootMargin: window.matchMedia('(max-width: 767px)').matches
+          ? '0px 0px -8% 0px'
+          : '650px 0px',
         threshold: 0,
       },
     );
@@ -700,11 +787,13 @@ function LazyBinoModel({
       }}
     >
       {loaded && (
-        <BinoModel
-          kind={kind}
-          progress={progress}
-          active={active}
-        />
+        <Suspense fallback={null}>
+          <BinoModel
+            kind={kind}
+            progress={progress}
+            active={active}
+          />
+        </Suspense>
       )}
     </div>
   );
@@ -995,6 +1084,17 @@ function LeadForm() {
     message: '',
   });
   const [errors, setErrors] = useState<Partial<FormValues>>({});
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get('product')?.trim().slice(0, 160);
+    if (!product) return;
+    const prefix = i18n.language.startsWith('ru') ? 'Товар' : i18n.language.startsWith('zh') ? '产品' : i18n.language.startsWith('en') ? 'Product' : 'Mahsulot';
+    setValues(old => old.message ? old : { ...old, message: `${prefix}: ${product}` });
+    params.delete('product');
+    const query = params.toString();
+    window.history.replaceState(window.history.state, '', `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`);
+  }, []);
+
   const [result, setResult] = useState<'success' | 'error' | null>(null);
   useEffect(() => {
     setErrors({});
@@ -1036,6 +1136,7 @@ function LeadForm() {
   return (
     <>
     <form
+      id="lead-form"
       className="lead-form"
       onSubmit={submit}
       noValidate
@@ -1507,6 +1608,13 @@ const binoContactDetails = {
   },
 };
 
+const binoPremiumContactCopy = {
+  uz: { title: 'Loyihangizni birga boshlaymiz', subtitle: 'Savollaringiz bormi? Mutaxassislarimiz sizga yordam berishga tayyor.', formTitle: 'Buyurtma yoki so‘rov qoldiring', formSubtitle: 'Ma’lumotlaringizni qoldiring, biz siz bilan tez orada bog‘lanamiz.', privacy: 'So‘rovingiz faqat siz bilan bog‘lanish uchun ishlatiladi.' },
+  ru: { title: 'Начнём ваш проект вместе', subtitle: 'Есть вопросы? Наши специалисты готовы помочь вам.', formTitle: 'Оставьте заявку или запрос', formSubtitle: 'Оставьте свои данные, и мы скоро свяжемся с вами.', privacy: 'Данные запроса используются для связи с вами.' },
+  en: { title: 'Let’s start your project together', subtitle: 'Have questions? Our specialists are ready to help.', formTitle: 'Order or leave an inquiry', formSubtitle: 'Leave your details and we will get back to you.', privacy: 'Your inquiry details will be used to contact you.' },
+  zh: { title: '携手开启您的项目', subtitle: '有任何疑问？我们的专业人员随时为您提供帮助。', formTitle: '提交订单或咨询', formSubtitle: '留下您的信息，我们会尽快与您联系。', privacy: '您的咨询信息仅用于与您联系。' },
+} as const;
+
 function Home() {
   const { t, i18n } = useTranslation();
   const configQuery = useGetBinoSiteConfig();
@@ -1515,6 +1623,7 @@ function Home() {
     : i18n.language.startsWith('en')
       ? binoContactDetails.en
       : binoContactDetails.uz;
+  const premiumContact = binoPremiumContactCopy[contactDetails === binoContactDetails.zh ? 'zh' : contactDetails === binoContactDetails.ru ? 'ru' : contactDetails === binoContactDetails.en ? 'en' : 'uz'];
   const heroProgress = useRef(0);
   const foundationProgress = useRef(0);
   const roofProgress = useRef(0);
@@ -1595,6 +1704,17 @@ function Home() {
     );
     return () => window.clearTimeout(timer);
   }, []);
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (preloading || !/^#[A-Za-z][\w-]*$/.test(hash)) return;
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(hash.slice(1))?.scrollIntoView({
+        behavior: 'auto',
+        block: 'start',
+      });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [preloading]);
   const config = configQuery.data as BinoSiteConfig | undefined;
   const values = config?.metrics;
   const whyDetails = i18n.language.startsWith('zh') ? binoWhyDetails.zh : i18n.language.startsWith('ru')
@@ -1929,36 +2049,45 @@ function Home() {
       </section>
       <section
         id="contact"
-        className="scene contact"
+        className="scene contact bino-premium-contact"
         data-testid="section-contact"
       >
         <div className="contact-grid">
           <div className="contact-title">
             <span className="eyebrow">{t('contact.eyebrow')}</span>
-            <h2>{t('contact.title')}</h2>
-            <p>{t('contact.copy')}</p>
+            <h2>{premiumContact.title}</h2>
+            <p>{premiumContact.subtitle}</p>
 
             <div className="bino-contact-phone">
               <span className="bino-contact-eyebrow">{contactDetails.number}</span>
-              <a className="bino-contact-phone-number" href="tel:+998977240002" data-testid="link-phone-998977240002">
-                +998 97 724 00 02 <ArrowUpRight size={17} />
+              <a className="bino-contact-phone-number" href="tel:+998931230202" data-testid="link-phone-998931230202">
+                +998 93 123 02 02 <ArrowUpRight size={17} />
               </a>
-              {config?.phones && config.phones.length > 0 && (
-                <div className="bino-more-phones">
-                  {config.phones
-                    .filter(phone => phone.number.replace(/\D/g, '') !== '998977240002' && phone.number.replace(/\D/g, '') !== '977240002')
-                    .map(phone => (
-                      <a
-                        href={`tel:${phone.number.replace(/[^\d+]/g, '')}`}
-                        key={`${phone.label}-${phone.number}`}
-                        aria-label={`${phone.label}: ${phone.number}`}
-                        data-testid={`link-phone-${phone.number.replace(/\D/g, '')}`}
-                      >
-                        {phone.number}
-                      </a>
-                    ))}
-                </div>
-              )}
+              {/* Keep the verified second contact visible even when the local API is offline. */}
+              <div className="bino-more-phones">
+                <a
+                  href="tel:+998977240002"
+                  aria-label="Telefon: +998 97 724 00 02"
+                  data-testid="link-phone-998977240002"
+                >
+                  +998 97 724 00 02
+                </a>
+                {config?.phones
+                  ?.filter(phone => {
+                    const digits = phone.number.replace(/\D/g, '');
+                    return !['998977240002', '977240002', '998931230202', '931230202'].includes(digits);
+                  })
+                  .map(phone => (
+                    <a
+                      href={`tel:${phone.number.replace(/[^\d+]/g, '')}`}
+                      key={`${phone.label}-${phone.number}`}
+                      aria-label={`${phone.label}: ${phone.number}`}
+                      data-testid={`link-phone-${phone.number.replace(/\D/g, '')}`}
+                    >
+                      {phone.number}
+                    </a>
+                  ))}
+              </div>
             </div>
 
             <div className="bino-social-head">
@@ -2008,7 +2137,14 @@ function Home() {
               </a>
             </div>
           </div>
-          <LeadForm />
+          <div className="bino-premium-form-card">
+            <div className="bino-premium-form-title">
+              <span className="bino-premium-form-icon" aria-hidden="true">▤</span>
+              <div><h3>{premiumContact.formTitle}</h3><p>{premiumContact.formSubtitle}</p></div>
+            </div>
+            <LeadForm />
+            <p className="bino-premium-privacy">♢ {premiumContact.privacy}</p>
+          </div>
         </div>
 
         <div className="bino-location" data-testid="section-bino-location">

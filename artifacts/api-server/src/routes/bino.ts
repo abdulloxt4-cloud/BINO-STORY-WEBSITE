@@ -49,7 +49,7 @@ router.post("/bino/leads", async (req, res): Promise<void> => {
   if (botToken && chatId) {
     try {
       const telegramMessage = [
-        "🔔 Yangi BINO STROY so‘rovi",
+        "🔔 Yangi SP OOO BINO so‘rovi",
         "",
         `👤 Ism: ${parsed.data.name}`,
         `📞 Telefon: ${parsed.data.phone}`,
@@ -166,9 +166,9 @@ const answers = {
   },
 
   greeting: {
-    uz: "Assalomu alaykum! Men BINO STROY yordamchisiman. Gidroizolyatsiya, mahsulotlarimiz, qo‘llanilish joylari, narx va aloqa haqida savol berishingiz mumkin.",
-    ru: "Здравствуйте! Я помощник BINO STROY. Вы можете спросить меня о гидроизоляции, нашей продукции, областях применения, ценах и контактах.",
-    en: "Hello! I am the BINO STROY assistant. You can ask me about waterproofing, our products, applications, prices and contact information.",
+    uz: "Assalomu alaykum! Men SP OOO BINO yordamchisiman. Gidroizolyatsiya, mahsulotlarimiz, qo‘llanilish joylari, narx va aloqa haqida savol berishingiz mumkin.",
+    ru: "Здравствуйте! Я помощник SP OOO BINO. Вы можете спросить меня о гидроизоляции, нашей продукции, областях применения, ценах и контактах.",
+    en: "Hello! I am the SP OOO BINO assistant. You can ask me about waterproofing, our products, applications, prices and contact information.",
   },
 
   waterproofing: {
@@ -178,9 +178,9 @@ const answers = {
   },
 
   company: {
-    uz: "BINO STROY gidroizolyatsiya yo‘nalishida faoliyat yuritadi. Kompaniya bu sohada 20 yillik tajribaga ega va turli qurilish obyektlari uchun gidroizolyatsiya yechimlarini taklif qiladi.",
-    ru: "BINO STROY работает в сфере гидроизоляции. Компания имеет 20-летний опыт и предлагает решения по гидроизоляции для различных строительных объектов.",
-    en: "BINO STROY specializes in waterproofing. The company has 20 years of experience and provides waterproofing solutions for different types of construction projects.",
+    uz: "SP OOO BINO gidroizolyatsiya yo‘nalishida faoliyat yuritadi. Kompaniya bu sohada 20 yillik tajribaga ega va turli qurilish obyektlari uchun gidroizolyatsiya yechimlarini taklif qiladi.",
+    ru: "SP OOO BINO работает в сфере гидроизоляции. Компания имеет 20-летний опыт и предлагает решения по гидроизоляции для различных строительных объектов.",
+    en: "SP OOO BINO specializes in waterproofing. The company has 20 years of experience and provides waterproofing solutions for different types of construction projects.",
   },
 
   applications: {
@@ -226,33 +226,33 @@ const answers = {
   },
 
   price: {
-    uz: "Narx mahsulot turi, kerakli miqdor va loyiha hajmiga bog‘liq. Aniq narx uchun BINO STROY bilan bog‘laning: +998 93 123 02 02 yoki +998 97 333 04 02.",
-    ru: "Цена зависит от типа материала, необходимого количества и объёма проекта. Для уточнения цены свяжитесь с BINO STROY: +998 93 123 02 02 или +998 97 333 04 02.",
-    en: "The price depends on the product type, required quantity and project size. For an exact price, contact BINO STROY at +998 93 123 02 02 or +998 97 333 04 02.",
+    uz: "Narx mahsulot turi, kerakli miqdor va loyiha hajmiga bog‘liq. Aniq narx uchun SP OOO BINO bilan bog‘laning: +998 93 123 02 02 yoki +998 97 724 00 02.",
+    ru: "Цена зависит от типа материала, необходимого количества и объёма проекта. Для уточнения цены свяжитесь с SP OOO BINO: +998 93 123 02 02 или +998 97 724 00 02.",
+    en: "The price depends on the product type, required quantity and project size. For an exact price, contact SP OOO BINO at +998 93 123 02 02 or +998 97 724 00 02.",
   },
 
   contact: {
-    uz: "BINO STROY bilan bog‘lanish uchun: +998 93 123 02 02 yoki +998 97 333 04 02.",
-    ru: "Связаться с BINO STROY можно по телефонам: +998 93 123 02 02 или +998 97 333 04 02.",
-    en: "You can contact BINO STROY at +998 93 123 02 02 or +998 97 333 04 02.",
+    uz: "SP OOO BINO bilan bog‘lanish uchun: +998 93 123 02 02 yoki +998 97 724 00 02.",
+    ru: "Связаться с SP OOO BINO можно по телефонам: +998 93 123 02 02 или +998 97 724 00 02.",
+    en: "You can contact SP OOO BINO at +998 93 123 02 02 or +998 97 724 00 02.",
   },
 
   order: {
-    uz: "Buyurtma yoki mahsulot bo‘yicha batafsil ma’lumot olish uchun +998 93 123 02 02 yoki +998 97 333 04 02 raqamlariga murojaat qilishingiz mumkin.",
-    ru: "Для оформления заказа или получения подробной информации о продукции свяжитесь с нами по телефонам +998 93 123 02 02 или +998 97 333 04 02.",
-    en: "For orders or more information about our products, contact us at +998 93 123 02 02 or +998 97 333 04 02.",
+    uz: "Buyurtma yoki mahsulot bo‘yicha batafsil ma’lumot olish uchun +998 93 123 02 02 yoki +998 97 724 00 02 raqamlariga murojaat qilishingiz mumkin.",
+    ru: "Для оформления заказа или получения подробной информации о продукции свяжитесь с нами по телефонам +998 93 123 02 02 или +998 97 724 00 02.",
+    en: "For orders or more information about our products, contact us at +998 93 123 02 02 or +998 97 724 00 02.",
   },
 
   thanks: {
-    uz: "Arzimaydi! BINO STROY bo‘yicha yana savolingiz bo‘lsa, bemalol yozishingiz mumkin.",
-    ru: "Пожалуйста! Если у вас есть другие вопросы о BINO STROY, можете написать мне.",
-    en: "You're welcome! If you have any other questions about BINO STROY, feel free to ask.",
+    uz: "Arzimaydi! SP OOO BINO bo‘yicha yana savolingiz bo‘lsa, bemalol yozishingiz mumkin.",
+    ru: "Пожалуйста! Если у вас есть другие вопросы о SP OOO BINO, можете написать мне.",
+    en: "You're welcome! If you have any other questions about SP OOO BINO, feel free to ask.",
   },
 
   goodbye: {
-    uz: "Xayr! BINO STROY xizmatlariga qiziqishingiz uchun rahmat.",
-    ru: "До свидания! Спасибо за интерес к BINO STROY.",
-    en: "Goodbye! Thank you for your interest in BINO STROY.",
+    uz: "Xayr! SP OOO BINO xizmatlariga qiziqishingiz uchun rahmat.",
+    ru: "До свидания! Спасибо за интерес к SP OOO BINO.",
+    en: "Goodbye! Thank you for your interest in SP OOO BINO.",
   },
 };
 
